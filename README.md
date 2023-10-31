@@ -19,7 +19,11 @@ state: "[[%wip]]"
 
 Imagine your professor gives you a LaTeX template and asks you to scribe a lecture note, while you have already taken the note in Obsidian with handy features like [callouts](https://help.obsidian.md/Editing+and+formatting/Callouts) and [block links](https://help.obsidian.md/Linking+notes+and+files/Internal+links#Link+to+a+block+in+a+note), and even advanced plugins like [pseudocode](https://github.com/ytliu74/obsidian-pseudocode) and [TikZ](https://github.com/artisticat1/obsidian-tikzjax). Spend another year to type it again or do some tedious manual conversion? 😩 Never! With [one command](#2-setup-the-shell-command) within Obsidian and you are ready to submit! 🥳
 
-![generated PDF viewed within Obsidian](https://raw.githubusercontent.com/zcysxy/Figurebed/master/img/obsidian-pandoc.png)
+<figure>
+    <img src="https://raw.githubusercontent.com/zcysxy/figurebed/master/img/obsidian-pandoc.png" alt="illustration">
+    <figcaption>generated PDF viewed within Obsidian<figcaption>
+<figure>
+![generated PDF viewed within Obsidian](https://raw.githubusercontent.com/zcysxy/figurebed/master/img/obsidian-pandoc.png)
 
 ## This repository includes
 
