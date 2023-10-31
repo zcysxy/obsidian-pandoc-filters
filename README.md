@@ -23,6 +23,7 @@ Imagine your professor gives you a LaTeX template and asks you to scribe a lectu
     <img src="https://raw.githubusercontent.com/zcysxy/figurebed/master/img/obsidian-pandoc.png" alt="illustration">
     <figcaption>generated PDF viewed within Obsidian<figcaption>
 <figure>
+
 ![generated PDF viewed within Obsidian](https://raw.githubusercontent.com/zcysxy/figurebed/master/img/obsidian-pandoc.png)
 
 ## This repository includes
