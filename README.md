@@ -24,7 +24,6 @@ Imagine your professor gives you a LaTeX template and asks you to scribe a lectu
 
 ![Generated PDF viewed within Obsidian](https://raw.githubusercontent.com/zcysxy/figurebed/master/img/obsidian-pandoc.png)[^1]
 
-
 [^3]: Here is a [genuine compliment](https://raw.githubusercontent.com/zcysxy/obsidian-pandoc-filters/main/assets/compliment.png) from my professor on my docs generated using this workflow.
 [^1]: Interested in the note in the figure? Check out our new preprint [Riemannian Adaptive Regularized Newton Methods with Hölder Continuous Hessians](https://arxiv.org/abs/2309.04052) 🎉
 
@@ -39,10 +38,6 @@ Imagine your professor gives you a LaTeX template and asks you to scribe a lectu
   - `shift_headings.lua` shifts heading levels to avoid duplicate H1 titles, supporting customizable shift levels
   - `div.lua` transforms custom pandoc divs
   - `preamble.lua` loads your reusable preamble file, e.g., `preamble.sty` for [obsidian-latex](https://github.com/wei2912/obsidian-latex)
-  - Other planned filters for
-    - beamer
-    - embeds
-    - literature note links as citations
 - A [defaults file](https://pandoc.org/MANUAL.html#defaults-files) that configures all the pandoc options and meta variables
   - ❗ Please substitute the placeholders in the defaults file with your own configurations
 - Some [templates](https://pandoc.org/MANUAL.html#templates) that control the look of the generated PDF
@@ -126,6 +121,10 @@ Therefore, the actual obsidian-shellcommands command I am using looks like this:
 
 ## In the future, perhaps we can
 
+- Add more filters for
+  - beamer
+  - embeds
+  - literature note links as citations
 - Integrate with [obsidian-pandoc-templates](https://github.com/universvm/obsidian-pandoc-templates)
 - [x] Directly read the `preamble.sty` file used by [obsidian-latex](https://github.com/wei2912/obsidian-latex)
 
