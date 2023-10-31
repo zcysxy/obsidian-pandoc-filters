@@ -27,6 +27,7 @@ Imagine your professor gives you a LaTeX template and asks you to scribe a lectu
 
 ## This repository includes
 
+- A [workflow](#the-workflow) that helps you seamlessly convert your Obsidian notes to camera-ready PDFs
 - [Pandoc filters](https://pandoc.org/lua-filters.html) that transform Obsidian Markdown for pandoc conversion
   - `callout.lua` transforms Obsidian callouts into LaTeX environments and color boxes with labeling support
   - `link.lua` transforms wikilinks into LaTeX references, supporting heading links and block links with alias
