@@ -1,4 +1,4 @@
----
+    ---
 title: Obsidian Pandoc
 author: zcysxy
 type: tool
@@ -36,6 +36,7 @@ Imagine your professor gives you a LaTeX template and asks you to scribe a lectu
   - `image.lua` parses image captions and attributes, supporting Obsidian image alias
   - `shift_headings.lua` shifts heading levels to avoid duplicate H1 titles, supporting customizable shift levels
   - `div.lua` transforms custom pandoc divs
+  - `preamble.lua` loads your reusable preamble file, e.g., `preamble.sty` for [obsidian-latex](https://github.com/wei2912/obsidian-latex)
   - Other planned filters for
     - beamer
     - embeds
@@ -44,7 +45,7 @@ Imagine your professor gives you a LaTeX template and asks you to scribe a lectu
   - ❗ Please substitute the placeholders in the defaults file with your own configurations
 - Some [templates](https://pandoc.org/MANUAL.html#templates) that control the look of the generated PDF
 
-Please refer to [detailed documentation](#detailed-documentation-of-the-filters) for the details.
+Please refer to the [customization guide](#customization-guide) for the detailed description of these files.
 
 ## Other recommended programs
 
@@ -124,6 +125,6 @@ Therefore, the actual obsidian-shellcommands command I am using looks like this:
 ## In the future, perhaps we can
 
 - Integrate with [obsidian-pandoc-templates](https://github.com/universvm/obsidian-pandoc-templates)
-- Directly read the `preamble.sty` file used by [obsidian-latex](https://github.com/wei2912/obsidian-latex)
+- [x] Directly read the `preamble.sty` file used by [obsidian-latex](https://github.com/wei2912/obsidian-latex)
 
-## Detailed documentation of the filters
+## Customization guide
