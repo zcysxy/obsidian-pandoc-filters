@@ -2,7 +2,7 @@
 title: Obsidian Pandoc
 type: tool
 created: 2023-07-20T15:47:11
-modified: 2023-10-31T04:14:17
+modified: 2023-10-31T04:24:13
 output:
   pdf_document:
     defaults: pdf
@@ -21,10 +21,8 @@ Imagine your professor gives you a LaTeX template and asks you to scribe a lectu
 
 <figure>
     <img src="https://raw.githubusercontent.com/zcysxy/figurebed/master/img/obsidian-pandoc.png" alt="illustration">
-    <figcaption>generated PDF viewed within Obsidian<figcaption>
-<figure>
-
-![generated PDF viewed within Obsidian](https://raw.githubusercontent.com/zcysxy/figurebed/master/img/obsidian-pandoc.png)
+    <center><figcaption style="font-size=0.8em; color=gray">generated PDF viewed within Obsidian</figcaption></center>
+</figure>
 
 ## This repository includes
 
