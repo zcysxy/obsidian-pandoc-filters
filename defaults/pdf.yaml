@@ -1,18 +1,21 @@
 ---
-# OPTIONS
-template: ${.}/../templates/default.latex
+## General options
 standalone: true
+embed-resources: true
 from: markdown+tex_math_single_backslash+wikilinks_title_after_pipe+mark+autolink_bare_uris
 output-file: output.pdf
-# citeproc: true
-# cite-method: natbib # or natbib
-# csl: ${.}/num.csl
-embed-resources: true
-# pdf-engine: pdflatex
 highlight-style: tango
 # toc: true
+
+## Templates
+template: ${.}/../templates/default.latex #! custom template
 # include-in-header:
 #   - ${.}/pandoc_templates/base.tex
+
+## Biliography
+bibliography: ${.}/../PLACEHOLDER.bib     #! custom bib file
+# csl: ${.}/../PLACEHOLDER.csl            #! custom csl
+
 filters:
   - ${.}/../filters/image.lua
   - ${.}/../filters/codeblock.lua
@@ -21,28 +24,26 @@ filters:
   - ${.}/../filters/shift_headings.lua
   - ${.}/../filters/link.lua
   - ${.}/../filters/div.lua
-  - mermaid-filter
-  - pandoc-crossref
+  # - mermaid-filter                      #! uncomment if you have mermaid-filter installed
+  # - pandoc-crossref                     #! uncomment if you have pandoc-crossref installed
   - citeproc
-  # - ${.}/filters/log.lua
-  # - /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/rmarkdown/rmarkdown/lua/pagebreak.lua 
-  # - /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/rmarkdown/rmarkdown/lua/latex-div.lua
+
 variables:
   # latex_engine: xelatex
+  # For beamer
   navigation: horizontal
-  fonttheme: "professionalfonts" 
+  fonttheme: "professionalfonts"
   theme: "Antibes"
   graphics: true
   geometry:
     - margin=1in
+  # For pandoc-crossref
   figPrefix:
     - Figure
     - Figures
   natbiboptions: numbers,square
   biblatexoptions: style=numeric
   biblio-title: References
+
 metadata:
-  # latex_engine: xelatex
   numbersections: true
-bibliography: /Users/ce/3-KNWL/33-Ref/myLibrary.bib 
-...
