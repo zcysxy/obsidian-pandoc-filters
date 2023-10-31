@@ -38,7 +38,7 @@ Imagine your professor gives you a LaTeX template and asks you to scribe a lectu
     - embeds
     - literature note links as citations
 - A [defaults file](https://pandoc.org/MANUAL.html#defaults-files) that configures all the pandoc options and meta variables
-  - Please substitute the placeholders in the defaults file with your own configurations
+  - ❗ Please substitute the placeholders in the defaults file with your own configurations
 - Some [templates](https://pandoc.org/MANUAL.html#templates)
 
 ## Other recommended programs
@@ -50,6 +50,10 @@ Imagine your professor gives you a LaTeX template and asks you to scribe a lectu
 ## The workflow
 
 ### 1. Configure pandoc files
+
+1. Install [pandoc](https://pandoc.org/installing.html) and recommended programs that suit your needs.
+2. Copy the three folders `filters`, `templates`, and `defaults` to the directory you choose, e.g., `obsidian_vault/config/pandoc/`.
+
 
 ### 2. Write the note and frontmatter
 
