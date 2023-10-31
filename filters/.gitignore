@@ -1,0 +1,5 @@
+debug*
+*.err
+*.pdf
+logging.lua
+*.md
