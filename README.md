@@ -3,7 +3,7 @@ title: Obsidian Pandoc
 author: zcysxy
 type: tool
 created: 2023-07-20T15:47:11
-modified: 2023-10-31T05:05:11
+modified: 2023-10-31T05:14:24
 output:
   pdf_document:
     defaults: pdf
@@ -78,6 +78,9 @@ pandoc --defaults obsidian_vault/config/pandoc/defaults/pdf.yaml note.md
 ```
 
 There are many plugins that can help you run shell commands within Obsidian, e.g., [obsidian-shellcommands](https://github.com/Taitava/obsidian-shellcommands)
+My obsidian-shellcommands command looks like this:
+
+![image.png](https://raw.githubusercontent.com/zcysxy/Figurebed/master/img/20231031051316.png)
 
 ### 4. Advanced configurations in the frontmatter
 
@@ -103,6 +106,10 @@ And the shell command becomes
 ```bash
 panrun note.md --data-dir obsidian_vault/config/pandoc/
 ```
+
+Therefore, the actual obsidian-shellcommands command I am using looks like this:
+
+![image.png](https://raw.githubusercontent.com/zcysxy/Figurebed/master/img/20231031051422.png)
 
 [^2]: This forks allows configurations in the frontmatter to override the defaults file, which is not supported in the original panrun.
 
