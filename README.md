@@ -1,4 +1,4 @@
-    ---
+---
 title: Obsidian Pandoc
 author: zcysxy
 type: tool
