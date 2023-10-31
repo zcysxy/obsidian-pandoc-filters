@@ -1,4 +1,4 @@
----
+    ---
 title: Obsidian Pandoc
 author: zcysxy
 type: tool
@@ -27,7 +27,7 @@ Imagine your professor gives you a LaTeX template and asks you to scribe a lectu
 
 ## This repository includes
 
-- [Pandoc filters](https://pandoc.org/lua-filters.html)
+- [Pandoc filters](https://pandoc.org/lua-filters.html) that transform Obsidian Markdown for pandoc conversion
   - `callout.lua` transforms Obsidian callouts into LaTeX environments and color boxes with labeling support
   - `link.lua` transforms wikilinks into LaTeX references, supporting heading links and block links with alias
   - `codeblock.lua` parses codeblocks for plugins, including [TikZ](https://github.com/artisticat1/obsidian-tikzjax) and [Pseudocode](https://github.com/ytliu74/obsidian-pseudocode#use-in-block-preamble)
@@ -40,7 +40,9 @@ Imagine your professor gives you a LaTeX template and asks you to scribe a lectu
     - literature note links as citations
 - A [defaults file](https://pandoc.org/MANUAL.html#defaults-files) that configures all the pandoc options and meta variables
   - ❗ Please substitute the placeholders in the defaults file with your own configurations
-- Some [templates](https://pandoc.org/MANUAL.html#templates)
+- Some [templates](https://pandoc.org/MANUAL.html#templates) that control the look of the generated PDF
+
+Please refer to [detailed documentation](#detailed-documentation-of-the-filters) for the details.
 
 ## Other recommended programs
 
@@ -117,3 +119,4 @@ Therefore, the actual obsidian-shellcommands command I am using looks like this:
 
 - Integrate with [obsidian-pandoc-templates](https://github.com/universvm/obsidian-pandoc-templates)
 - Directly read the `preamble.sty` file used by [obsidian-latex](https://github.com/wei2912/obsidian-latex)
+## Detailed documentation of the filters
