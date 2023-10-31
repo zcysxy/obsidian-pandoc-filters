@@ -85,6 +85,26 @@ Under the current setup, to change a template, you can either change the `templa
 Both methods are not ideal and break the automation.
 What if we can specify the template in the frontmatter?
 However, this is a limitation of the vanilla pandoc ([Issue#4627](https://github.com/jgm/pandoc/issues/4627)).
+In the issue, several programs are mentioned to solve this problem, e.g., my fork of [panrun](https://github.com/zcysxy/panrun). [^2]
+With panrun, we can specify the pandoc arguments like `template` in the frontmatter:
+
+```yaml
+---
+output:
+  pdf_document:
+    pandoc_args:
+    defaults: pdf
+    template: scribe.tex
+---
+```
+
+And the shell command becomes
+
+```bash
+panrun note.md --data-dir obsidian_vault/config/pandoc/
+```
+
+[^2]: This forks allows configurations in the frontmatter to override the defaults file, which is not supported in the original panrun.
 
 ## In the future, perhaps we can
 
