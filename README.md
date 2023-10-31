@@ -39,14 +39,11 @@ Imagine your professor gives you a LaTeX template and asks you to scribe a lectu
     - Please substitute the placeholders in the defaults file with your own configurations
 - Some [templates](https://pandoc.org/MANUAL.html#templates)
 
-## Recommendations
+## Other recommended programs
 
-- cross-ref
-- mermail-filter
-
-## Defaults File
-
-- wikilink [[#Filters]]
+- [`cross-ref`](https://github.com/lierdakil/pandoc-crossref): Pandoc filter for cross-references
+- [`mermaid-filter`](https://github.com/raghur/mermaid-filter): Pandoc filter for [Mermaid](https://mermaid-js.github.io/mermaid/#/) diagrams
+- [`panrun`](https://github.com/mb21/panrun) or [my fork](https://github.com/zcysxy/panrun): read pandoc arguments from the note fromtmatter
 
 ## LaTeX Templates and Style Files
 
