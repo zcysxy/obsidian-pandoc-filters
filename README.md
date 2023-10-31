@@ -6,8 +6,7 @@ created: 2023-07-20T15:47:11
 modified: 2023-10-31T01:10:44
 output:
   pdf_document:
-    pandoc_args:
-      - --defaults=./.config/pdf.yaml
+    defaults: pdf
 sup:
   - "[[Obsidian]]"
   - "[[Pandoc]]"
@@ -16,8 +15,7 @@ state: "[[%wip]]"
 
 # Pandoc Filters and Workflow for Obsidian
 
-> [!note] Note
-> - If you are here only for the filters, they are in ==~~hell~~==
+> [!NOTE] Note
 > - This workflow focuses on `markdown -> latex -> pdf`. There are many great plugins for other pipelines, like [Obsidian Webpage Export](https://github.com/KosmosisDire/obsidian-webpage-export).
 
 Imagine your professor gives you a LaTeX template and asks you to scribe a lecture note, while you have already taken the note in Obsidian with handy features like [callouts](https://help.obsidian.md/Editing+and+formatting/Callouts) and [block links](https://help.obsidian.md/Linking+notes+and+files/Internal+links#Link+to+a+block+in+a+note), and even advanced plugins like [pseudocode](https://github.com/ytliu74/obsidian-pseudocode) and [TikZ](https://github.com/artisticat1/obsidian-tikzjax). Spend another year to type it again or do some tedious manual conversion? 😩 Never! With one command within Obsidian and you are ready to submit! 🥳
