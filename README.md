@@ -3,7 +3,7 @@ title: Obsidian Pandoc
 author: zcysxy
 type: tool
 created: 2023-07-20T15:47:11
-modified: 2023-10-31T04:49:22
+modified: 2023-10-31T05:05:11
 output:
   pdf_document:
     defaults: pdf
@@ -77,9 +77,14 @@ Now, you are ready to generate the PDF *outside* Obsidian, by running the follow
 pandoc --defaults obsidian_vault/config/pandoc/defaults/pdf.yaml note.md
 ```
 
-To execute the command within Obsidian, you can use the [shell commands](https://help.obsidian.md/Advanced+topics/Using+Obsidian+CLI#Shell+commands) plugin.
+There are many plugins that can help you run shell commands within Obsidian, e.g., [obsidian-shellcommands](https://github.com/Taitava/obsidian-shellcommands)
 
-- [Fetching Title#697c](https://github.com/jgm/pandoc/issues/4627)
+### 4. Advanced configurations in the frontmatter
+
+Under the current setup, to change a template, you can either change the `template` configuration in the defaults file or modify the shell command, adding the option `--template`.
+Both methods are not ideal and break the automation.
+What if we can specify the template in the frontmatter?
+However, this is a limitation of the vanilla pandoc ([Issue#4627](https://github.com/jgm/pandoc/issues/4627)).
 
 ## In the future, perhaps we can
 
