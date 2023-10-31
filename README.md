@@ -2,7 +2,7 @@
 title: Obsidian Pandoc
 type: tool
 created: 2023-07-20T15:47:11
-modified: 2023-10-31T04:14:17
+modified: 2023-10-31T04:30:20
 output:
   pdf_document:
     defaults: pdf
@@ -19,9 +19,9 @@ state: "[[%wip]]"
 
 Imagine your professor gives you a LaTeX template and asks you to scribe a lecture note, while you have already taken the note in Obsidian with handy features like [callouts](https://help.obsidian.md/Editing+and+formatting/Callouts) and [block links](https://help.obsidian.md/Linking+notes+and+files/Internal+links#Link+to+a+block+in+a+note), and even advanced plugins like [pseudocode](https://github.com/ytliu74/obsidian-pseudocode) and [TikZ](https://github.com/artisticat1/obsidian-tikzjax). Spend another year to type it again or do some tedious manual conversion? 😩 Never! With [one command](#2-setup-the-shell-command) within Obsidian and you are ready to submit! 🥳
 
+![Generated PDF viewed within Obsidian](https://raw.githubusercontent.com/zcysxy/figurebed/master/img/obsidian-pandoc.png)[^1]
 
-![generated PDF viewed within Obsidian](https://raw.githubusercontent.com/zcysxy/figurebed/master/img/obsidian-pandoc.png)
-<center>generated PDF viewed within Obsidian</center>
+[^1]: Interested in this note? It's about our new preprint [Riemannian Adaptive Regularized Newton Methods with Hölder Continuous Hessians](https://arxiv.org/abs/2309.04052) 🎉
 
 ## This repository includes
 
