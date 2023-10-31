@@ -1,6 +1,5 @@
 ---
 title: Obsidian Pandoc
-aliases: []
 type: tool
 created: 2023-07-20T15:47:11
 modified: 2023-10-31T01:10:44
@@ -25,18 +24,18 @@ Imagine your professor gives you a LaTeX template and asks you to scribe a lectu
 ## This repository includes
 
 - [Pandoc filters](https://pandoc.org/lua-filters.html)
-    - `callout.lua` transforms Obsidian callouts into LaTeX environments and color boxes with labeling support
-    - `link.lua` transforms wikilinks into LaTeX references, supporting heading links and block links with alias
-    - `codeblock.lua` parses codeblocks for plugins, including [TikZ](https://github.com/artisticat1/obsidian-tikzjax) and [Pseudocode](https://github.com/ytliu74/obsidian-pseudocode#use-in-block-preamble)
-    - `image.lua` parses image captions and attributes, supporting Obsidian image alias
-    - `shift_headings.lua` shifts heading levels to avoid duplicate H1 titles, supporting customizable shift levels
-    - `div.lua` transforms custom pandoc divs
-    - Other planned filters for
-        - beamer
-        - embeds
-        - literature note links as citations
+  - `callout.lua` transforms Obsidian callouts into LaTeX environments and color boxes with labeling support
+  - `link.lua` transforms wikilinks into LaTeX references, supporting heading links and block links with alias
+  - `codeblock.lua` parses codeblocks for plugins, including [TikZ](https://github.com/artisticat1/obsidian-tikzjax) and [Pseudocode](https://github.com/ytliu74/obsidian-pseudocode#use-in-block-preamble)
+  - `image.lua` parses image captions and attributes, supporting Obsidian image alias
+  - `shift_headings.lua` shifts heading levels to avoid duplicate H1 titles, supporting customizable shift levels
+  - `div.lua` transforms custom pandoc divs
+  - Other planned filters for
+    - beamer
+    - embeds
+    - literature note links as citations
 - A [defaults file](https://pandoc.org/MANUAL.html#defaults-files) that configures all the pandoc options and meta variables
-    - Please substitute the placeholders in the defaults file with your own configurations
+  - Please substitute the placeholders in the defaults file with your own configurations
 - Some [templates](https://pandoc.org/MANUAL.html#templates)
 
 ## Other recommended programs
