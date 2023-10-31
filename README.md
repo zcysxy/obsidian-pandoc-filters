@@ -15,13 +15,14 @@ state: "[[%wip]]"
 # Pandoc Filters and an Academic Workflow for Obsidian
 
 > [!NOTE]
-> This workflow focuses on `markdown -> latex -> pdf`. There are many great plugins for other pipelines, like [Obsidian Webpage Export](https://github.com/KosmosisDire/obsidian-webpage-export).
+> - This workflow focuses on `markdown -> latex -> pdf`. There are many great plugins for other pipelines, like [Obsidian Webpage Export](https://github.com/KosmosisDire/obsidian-webpage-export).
+> - Basic knowledge of [pandoc](https://pandoc.org/), [YAML](https://yaml.org/), etc., is assumed.
 
-Imagine your professor gives you a LaTeX template and asks you to scribe a lecture note, while you have already taken the note in Obsidian with handy features like [callouts](https://help.obsidian.md/Editing+and+formatting/Callouts) and [block links](https://help.obsidian.md/Linking+notes+and+files/Internal+links#Link+to+a+block+in+a+note), and even advanced plugins like [pseudocode](https://github.com/ytliu74/obsidian-pseudocode) and [TikZ](https://github.com/artisticat1/obsidian-tikzjax). Spend another year to type it again or do some tedious manual conversion? 😩 Never! With [one command](#2-setup-the-shell-command) within Obsidian and you are ready to submit! 🥳
+Imagine your professor gives you a LaTeX template and asks you to scribe a lecture note, while you have already taken the note in Obsidian with handy features like [callouts](https://help.obsidian.md/Editing+and+formatting/Callouts) and [block links](https://help.obsidian.md/Linking+notes+and+files/Internal+links#Link+to+a+block+in+a+note), and even advanced plugins like [pseudocode](https://github.com/ytliu74/obsidian-pseudocode) and [TikZ](https://github.com/artisticat1/obsidian-tikzjax). Spend another year to type it again or do some tedious manual conversion? 😩 Never! With [one command](#3-setup-the-shell-command) within Obsidian and you are ready to submit! 🥳
 
 ![Generated PDF viewed within Obsidian](https://raw.githubusercontent.com/zcysxy/figurebed/master/img/obsidian-pandoc.png)[^1]
 
-[^1]: Interested in this note? It's about our new preprint [Riemannian Adaptive Regularized Newton Methods with Hölder Continuous Hessians](https://arxiv.org/abs/2309.04052) 🎉
+[^1]: Interested in the note in the figure? Check out our new preprint [Riemannian Adaptive Regularized Newton Methods with Hölder Continuous Hessians](https://arxiv.org/abs/2309.04052) 🎉
 
 ## This repository includes
 
@@ -50,11 +51,13 @@ Imagine your professor gives you a LaTeX template and asks you to scribe a lectu
 
 ### 1. Configure pandoc files
 
-### 2. Setup the shell command
+### 2. Write the note and frontmatter
+
+### 3. Setup the shell command
 
 - [Fetching Title#697c](https://github.com/jgm/pandoc/issues/4627)
 
-## Perhaps we can
+## In the future, perhaps we can
 
 - Integrate with [obsidian-pandoc-templates](https://github.com/universvm/obsidian-pandoc-templates)
 - Directly read the `preamble.sty` file used by [obsidian-latex](https://github.com/wei2912/obsidian-latex)
