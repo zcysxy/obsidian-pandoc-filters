@@ -20,10 +20,12 @@ state: "[[%wip]]"
 > - This workflow focuses on `markdown -> latex -> pdf`. There are many great plugins for other pipelines, like [Obsidian Webpage Export](https://github.com/KosmosisDire/obsidian-webpage-export).
 > - Basic knowledge of [pandoc](https://pandoc.org/), [YAML](https://yaml.org/), etc., is assumed.
 
-Imagine your professor gives you a LaTeX template and asks you to scribe a lecture note, while you have already taken the note in Obsidian with handy features like [callouts](https://help.obsidian.md/Editing+and+formatting/Callouts) and [block links](https://help.obsidian.md/Linking+notes+and+files/Internal+links#Link+to+a+block+in+a+note), and even advanced plugins like [pseudocode](https://github.com/ytliu74/obsidian-pseudocode) and [TikZ](https://github.com/artisticat1/obsidian-tikzjax). Spend another year to type it again or do some tedious manual conversion? 😩 Never! With [one command](#3-setup-the-shell-command) within Obsidian and you are ready to submit! 🥳
+Imagine your professor gives you a LaTeX template and asks you to scribe a lecture note,[^3] while you have already taken the note in Obsidian with handy features like [callouts](https://help.obsidian.md/Editing+and+formatting/Callouts) and [block links](https://help.obsidian.md/Linking+notes+and+files/Internal+links#Link+to+a+block+in+a+note), and even advanced plugins like [pseudocode](https://github.com/ytliu74/obsidian-pseudocode) and [TikZ](https://github.com/artisticat1/obsidian-tikzjax). Spend another year to type it again or do some tedious manual conversion? 😩 Never! With [one command](#3-setup-the-shell-command) within Obsidian and you are ready to submit! 🥳
 
 ![Generated PDF viewed within Obsidian](https://raw.githubusercontent.com/zcysxy/figurebed/master/img/obsidian-pandoc.png)[^1]
 
+
+[^3]: Here is a real compliment from my professor on my docs generated using this workflow.
 [^1]: Interested in the note in the figure? Check out our new preprint [Riemannian Adaptive Regularized Newton Methods with Hölder Continuous Hessians](https://arxiv.org/abs/2309.04052) 🎉
 
 ## This repository includes
