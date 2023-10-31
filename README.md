@@ -2,7 +2,7 @@
 title: Obsidian Pandoc
 type: tool
 created: 2023-07-20T15:47:11
-modified: 2023-10-31T01:10:44
+modified: 2023-10-31T04:14:17
 output:
   pdf_document:
     defaults: pdf
@@ -12,12 +12,12 @@ sup:
 state: "[[%wip]]"
 ---
 
-# Pandoc Filters and Workflow for Obsidian
+# Pandoc Filters and an Academic Workflow for Obsidian
 
 > [!NOTE]
 > This workflow focuses on `markdown -> latex -> pdf`. There are many great plugins for other pipelines, like [Obsidian Webpage Export](https://github.com/KosmosisDire/obsidian-webpage-export).
 
-Imagine your professor gives you a LaTeX template and asks you to scribe a lecture note, while you have already taken the note in Obsidian with handy features like [callouts](https://help.obsidian.md/Editing+and+formatting/Callouts) and [block links](https://help.obsidian.md/Linking+notes+and+files/Internal+links#Link+to+a+block+in+a+note), and even advanced plugins like [pseudocode](https://github.com/ytliu74/obsidian-pseudocode) and [TikZ](https://github.com/artisticat1/obsidian-tikzjax). Spend another year to type it again or do some tedious manual conversion? 😩 Never! With one command within Obsidian and you are ready to submit! 🥳
+Imagine your professor gives you a LaTeX template and asks you to scribe a lecture note, while you have already taken the note in Obsidian with handy features like [callouts](https://help.obsidian.md/Editing+and+formatting/Callouts) and [block links](https://help.obsidian.md/Linking+notes+and+files/Internal+links#Link+to+a+block+in+a+note), and even advanced plugins like [pseudocode](https://github.com/ytliu74/obsidian-pseudocode) and [TikZ](https://github.com/artisticat1/obsidian-tikzjax). Spend another year to type it again or do some tedious manual conversion? 😩 Never! With [one command](#2-setup-the-shell-command) within Obsidian and you are ready to submit! 🥳
 
 ![generated PDF viewed within Obsidian](https://raw.githubusercontent.com/zcysxy/Figurebed/master/img/obsidian-pandoc.png)
 
@@ -44,13 +44,15 @@ Imagine your professor gives you a LaTeX template and asks you to scribe a lectu
 - [`mermaid-filter`](https://github.com/raghur/mermaid-filter): Pandoc filter for [Mermaid](https://mermaid-js.github.io/mermaid/#/) diagrams
 - [`panrun`](https://github.com/mb21/panrun) or [my fork](https://github.com/zcysxy/panrun): read pandoc arguments from the note fromtmatter
 
-## LaTeX Templates and Style Files
+## The workflow
 
-- Extended Mathjax style file
+### 1. Configure pandoc files
 
-## Shell Commands
+### 2. Setup the shell command
 
-- [GitHub - mb21/panrun: Script that looks at the YAML metadata in a markdown file and runs pandoc for you.](https://github.com/mb21/panrun)
 - [Fetching Title#697c](https://github.com/jgm/pandoc/issues/4627)
 
-## TODO
+## Perhaps we can
+
+- Integrate with [obsidian-pandoc-templates](https://github.com/universvm/obsidian-pandoc-templates)
+- Directly read the `preamble.sty` file used by [obsidian-latex](https://github.com/wei2912/obsidian-latex)
