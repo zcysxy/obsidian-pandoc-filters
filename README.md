@@ -25,7 +25,7 @@ Imagine your professor gives you a LaTeX template and asks you to scribe a lectu
 ![Generated PDF viewed within Obsidian](https://raw.githubusercontent.com/zcysxy/figurebed/master/img/obsidian-pandoc.png)[^1]
 
 
-[^3]: Here is a real compliment from my professor on my docs generated using this workflow.
+[^3]: Here is a [genuine compliment](https://raw.githubusercontent.com/zcysxy/obsidian-pandoc-filters/main/assets/compliment.png) from my professor on my docs generated using this workflow.
 [^1]: Interested in the note in the figure? Check out our new preprint [Riemannian Adaptive Regularized Newton Methods with Hölder Continuous Hessians](https://arxiv.org/abs/2309.04052) 🎉
 
 ## This repository includes
