@@ -5,28 +5,32 @@ embed-resources: true
 from: markdown+tex_math_single_backslash+wikilinks_title_after_pipe+mark+autolink_bare_uris
 output-file: output.pdf
 highlight-style: tango
+data-dir: ${.}/..                             #! custom data directory, the directory containing the filters, defaults, and tempaltes folders
 # toc: true
 
 ## Templates
-template: ${.}/../templates/default.latex #! custom template
-# include-in-header:
-#   - ${.}/pandoc_templates/base.tex
+template: ${USERDATA}/templates/default.latex #! custom template
 
 ## Biliography
-bibliography: ${.}/../PLACEHOLDER.bib     #! custom bib file
-# csl: ${.}/../PLACEHOLDER.csl            #! custom csl
+bibliography: ${USERDATA}/PLACEHOLDER.bib     #! custom bib file
+# csl: ${USERDATA}/PLACEHOLDER.csl            #! custom csl
 
 filters:
-  - ${.}/../filters/image.lua
-  - ${.}/../filters/codeblock.lua
-  - ${.}/../filters/math.lua
-  - ${.}/../filters/callout.lua
-  - ${.}/../filters/shift_headings.lua
-  - ${.}/../filters/link.lua
-  - ${.}/../filters/div.lua
-  # - mermaid-filter                      #! uncomment if you have mermaid-filter installed
-  # - pandoc-crossref                     #! uncomment if you have pandoc-crossref installed
+  - ${USERDATA}/filters/image.lua
+  - ${USERDATA}/filters/codeblock.lua
+  - ${USERDATA}/filters/math.lua
+  - ${USERDATA}/filters/callout.lua
+  - ${USERDATA}/filters/shift_headings.lua
+  - ${USERDATA}/filters/link.lua
+  - ${USERDATA}/filters/div.lua
+  - ${USERDATA}/filters/preamble.lua
+  # - mermaid-filter                          #! uncomment if you have mermaid-filter installed
+  # - pandoc-crossref                         #! uncomment if you have pandoc-crossref installed
   - citeproc
+
+metadata:
+  numbersections: true
+  # preamble-file: ../preamble.sty            #! custom preamble file, relative to the custom data directory
 
 variables:
   # latex_engine: xelatex
@@ -44,6 +48,3 @@ variables:
   natbiboptions: numbers,square
   biblatexoptions: style=numeric
   biblio-title: References
-
-metadata:
-  numbersections: true
