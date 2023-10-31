@@ -1,8 +1,9 @@
 ---
 title: Obsidian Pandoc
+author: zcysxy
 type: tool
 created: 2023-07-20T15:47:11
-modified: 2023-10-31T04:30:20
+modified: 2023-10-31T04:49:22
 output:
   pdf_document:
     defaults: pdf
@@ -53,11 +54,30 @@ Imagine your professor gives you a LaTeX template and asks you to scribe a lectu
 
 1. Install [pandoc](https://pandoc.org/installing.html) and recommended programs that suit your needs.
 2. Copy the three folders `filters`, `templates`, and `defaults` to the directory you choose, e.g., `obsidian_vault/config/pandoc/`.
-
+3. Customize the `defaults/pdf.yaml` file to configure your pandoc options and replace the placeholders.
 
 ### 2. Write the note and frontmatter
 
+When you compose the note, it is a good practice to keep the syntax simple and compatible with pandoc and other Markdown programs.
+Add meta variables in the frontmatter ([properties](https://help.obsidian.md/Editing+and+formatting/Properties)) that you want pandoc and your template to pick up, e.g.,
+
+```yaml
+---
+title: Obsidian Pandoc
+author: zcysxy
+uni: Obsidian University # this is a variable specified in templates/scribe.tex
+---
+```
+
 ### 3. Setup the shell command
+
+Now, you are ready to generate the PDF *outside* Obsidian, by running the following shell command
+
+```bash
+pandoc --defaults obsidian_vault/config/pandoc/defaults/pdf.yaml note.md
+```
+
+To execute the command within Obsidian, you can use the [shell commands](https://help.obsidian.md/Advanced+topics/Using+Obsidian+CLI#Shell+commands) plugin.
 
 - [Fetching Title#697c](https://github.com/jgm/pandoc/issues/4627)
 
