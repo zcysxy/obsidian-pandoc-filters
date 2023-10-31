@@ -16,6 +16,7 @@ state: "[[%wip]]"
 # Pandoc Filters and an Academic Workflow for Obsidian
 
 > [!NOTE]
+>
 > - This workflow focuses on `markdown -> latex -> pdf`. There are many great plugins for other pipelines, like [Obsidian Webpage Export](https://github.com/KosmosisDire/obsidian-webpage-export).
 > - Basic knowledge of [pandoc](https://pandoc.org/), [YAML](https://yaml.org/), etc., is assumed.
 
@@ -47,9 +48,13 @@ Please refer to [detailed documentation](#detailed-documentation-of-the-filters)
 
 ## Other recommended programs
 
-- [`cross-ref`](https://github.com/lierdakil/pandoc-crossref): Pandoc filter for cross-references
-- [`mermaid-filter`](https://github.com/raghur/mermaid-filter): Pandoc filter for [Mermaid](https://mermaid-js.github.io/mermaid/#/) diagrams
-- [`panrun`](https://github.com/mb21/panrun) or [my fork](https://github.com/zcysxy/panrun): read pandoc arguments from the note fromtmatter
+- Other filters
+  - [`cross-ref`](https://github.com/lierdakil/pandoc-crossref): Pandoc filter for cross-references
+  - [`mermaid-filter`](https://github.com/raghur/mermaid-filter): Pandoc filter for [Mermaid](https://mermaid-js.github.io/mermaid/#/) diagrams
+- pandoc wrappers
+  - [`panrun`](https://github.com/mb21/panrun) or [my fork](https://github.com/zcysxy/panrun): read pandoc arguments from the note fromtmatter
+- Obisidian plugin
+  - [obsidian-shellcommands](https://github.com/Taitava/obsidian-shellcommands)
 
 ## The workflow
 
@@ -74,7 +79,7 @@ uni: Obsidian University # this is a variable specified in templates/scribe.tex
 
 ### 3. Setup the shell command
 
-Now, you are ready to generate the PDF *outside* Obsidian, by running the following shell command
+Now, you are ready to generate the PDF _outside_ Obsidian, by running the following shell command
 
 ```bash
 pandoc --defaults obsidian_vault/config/pandoc/defaults/pdf.yaml note.md
@@ -120,4 +125,5 @@ Therefore, the actual obsidian-shellcommands command I am using looks like this:
 
 - Integrate with [obsidian-pandoc-templates](https://github.com/universvm/obsidian-pandoc-templates)
 - Directly read the `preamble.sty` file used by [obsidian-latex](https://github.com/wei2912/obsidian-latex)
+
 ## Detailed documentation of the filters
