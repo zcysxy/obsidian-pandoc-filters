@@ -21,7 +21,7 @@ Imagine your professor gives you a LaTeX template and asks you to scribe a lectu
 
 
 ![generated PDF viewed within Obsidian](https://raw.githubusercontent.com/zcysxy/figurebed/master/img/obsidian-pandoc.png)
-<center><figcaption>generated PDF viewed within Obsidian</figcaption></center>
+<center>generated PDF viewed within Obsidian</center>
 
 ## This repository includes
 
