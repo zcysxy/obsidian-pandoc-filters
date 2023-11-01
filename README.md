@@ -125,7 +125,7 @@ Therefore, the actual obsidian-shellcommands command I am using looks like this:
   - beamer
   - embeds
   - literature note links as citations
-- Integrate with [obsidian-pandoc-templates](https://github.com/universvm/obsidian-pandoc-templates)
+- Integrate with [obsidian-pandoc-templates](https://github.com/universvm/obsidian-pandoc-templates) and [obsidian-enhancing-export](https://github.com/mokeyish/obsidian-enhancing-export)
 - [x] Directly read the `preamble.sty` file used by [obsidian-latex](https://github.com/wei2912/obsidian-latex)
 
 ## Customization guide
