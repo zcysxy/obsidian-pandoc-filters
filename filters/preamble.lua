@@ -5,14 +5,31 @@
   By github.com/zcysxy
 --]]
 
-local logging = require "filters.logging"
+user_dir = PANDOC_STATE['user_data_dir']:gsub(" ", "\\space "):gsub("~", "\\string~") .. "/"
+basic_preamble = [[
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{algorithm}
+\usepackage[noEnd=false,indLines=false]{algpseudocodex}
+\usepackage{tikz}
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}[section]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{assumption}{Assumption}[section]
+]]
+
 
 function Meta (m)
+    header = m['header-includes'] and m['header-includes'] or pandoc.List()
+    header[#header + 1] = pandoc.RawBlock("tex", basic_preamble)
+
     if m['preamble-file'] then
-        preamble = pandoc.RawInline("tex", "\\usepackage{" .. m['preamble-file']:gsub("%.sty$", "") .. "}")
-        header = m['header-includes'] and m['header-includes'] or pandoc.List()
+        preamble = pandoc.RawInline("tex", "\\usepackage{\"" .. user_dir .. m['preamble-file']:gsub("%.sty$", "") .. "\"}")
         header[#header + 1] = preamble
-        m["header-includes"] = header
     end
+
+    m["header-includes"] = header
     return m
 end
