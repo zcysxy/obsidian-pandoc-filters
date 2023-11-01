@@ -49,7 +49,7 @@ Imagine your professor gives you a LaTeX template and asks you to scribe a lectu
 - Other filters
   - [`cross-ref`](https://github.com/lierdakil/pandoc-crossref): Pandoc filter for cross-references
   - [`mermaid-filter`](https://github.com/raghur/mermaid-filter): Pandoc filter for [Mermaid](https://mermaid-js.github.io/mermaid/#/) diagrams
-- pandoc wrappers
+- Pandoc wrappers
   - [`panrun`](https://github.com/mb21/panrun) or [my fork](https://github.com/zcysxy/panrun): read pandoc arguments from the note fromtmatter
 - Obisidian plugin
   - [obsidian-shellcommands](https://github.com/Taitava/obsidian-shellcommands)
