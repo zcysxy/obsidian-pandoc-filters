@@ -4,6 +4,7 @@ standalone: true
 embed-resources: true
 from: markdown+tex_math_single_backslash+wikilinks_title_after_pipe+mark+autolink_bare_uris
 output-file: output.pdf
+pdf-engine: xelatex                           #! use xelatex to support CJK and unicode
 highlight-style: tango
 data-dir: ${.}/..                             #! custom data directory, the directory containing the filters, defaults, and tempaltes folders
 # toc: true
@@ -29,11 +30,12 @@ filters:
   - citeproc
 
 metadata:
+  CJKmainfont: SimSong
+  CJKoptions: AutoFakeBold
   numbersections: true
   # preamble-file: ../preamble.sty            #! custom preamble file, relative to the custom data directory
 
 variables:
-  # latex_engine: xelatex
   # For beamer
   navigation: horizontal
   fonttheme: "professionalfonts"
