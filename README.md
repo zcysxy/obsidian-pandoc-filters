@@ -42,7 +42,7 @@ Imagine your professor gives you a LaTeX template and asks you to scribe a lectu
   - ❗ Please substitute the placeholders in the defaults file with your own configurations
 - Some [templates](https://pandoc.org/MANUAL.html#templates) that control the look of the generated PDF
 
-Please refer to the [customization guide](#customization-guide) for the detailed description of these files.
+<!-- Please refer to the [customization guide](#customization-guide) for the detailed description of these files. -->
 
 ## Other recommended programs
 
@@ -117,7 +117,7 @@ Therefore, the actual obsidian-shellcommands command I am using looks like this:
 
 ![image.png](https://raw.githubusercontent.com/zcysxy/Figurebed/master/img/20231031051422.png)
 
-[^2]: This forks allows configurations in the frontmatter to override the defaults file, which is not supported in the original panrun.
+[^2]: This fork allows configurations in the frontmatter to override the defaults file, which is not supported in the original panrun.
 
 ## In the future, perhaps we can
 
@@ -129,3 +129,5 @@ Therefore, the actual obsidian-shellcommands command I am using looks like this:
 - [x] Directly read the `preamble.sty` file used by [obsidian-latex](https://github.com/wei2912/obsidian-latex)
 
 ## Customization guide
+
+> WIP
