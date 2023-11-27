@@ -4,3 +4,4 @@ debug*
 logging.lua
 *.md
 PLACEHOLDER*
+templates/my.latex

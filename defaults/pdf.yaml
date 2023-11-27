@@ -10,10 +10,10 @@ data-dir: ${.}/..                             #! custom data directory, the dire
 # toc: true
 
 ## Templates
-template: ${USERDATA}/templates/default.latex #! custom template
+# template: ${USERDATA}/PLACEHOLDER.latex     #! custom template
 
 ## Biliography
-bibliography: ${USERDATA}/PLACEHOLDER.bib     #! custom bib file
+bibliography: /Users/ce/Library/CloudStorage/OneDrive-四川民族学院/3-KNWL/33-Ref/myLibrary.bib     #! custom bib file
 # csl: ${USERDATA}/PLACEHOLDER.csl            #! custom csl
 
 filters:
@@ -25,8 +25,8 @@ filters:
   - ${USERDATA}/filters/link.lua
   - ${USERDATA}/filters/div.lua
   - ${USERDATA}/filters/preamble.lua
-  # - mermaid-filter                          #! uncomment if you have mermaid-filter installed
-  # - pandoc-crossref                         #! uncomment if you have pandoc-crossref installed
+  - mermaid-filter                          #! uncomment if you have mermaid-filter installed
+  - pandoc-crossref                         #! uncomment if you have pandoc-crossref installed
   - citeproc
 
 metadata:
