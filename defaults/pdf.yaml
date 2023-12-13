@@ -13,7 +13,7 @@ data-dir: ${.}/..                             #! custom data directory, the dire
 # template: ${USERDATA}/PLACEHOLDER.latex     #! custom template
 
 ## Biliography
-bibliography: /Users/ce/Library/CloudStorage/OneDrive-四川民族学院/3-KNWL/33-Ref/myLibrary.bib     #! custom bib file
+bibliography: /Users/ce/3-KNWL/33-Ref/myLibrary.bib     #! custom bib file
 # csl: ${USERDATA}/PLACEHOLDER.csl            #! custom csl
 
 filters:
@@ -25,6 +25,7 @@ filters:
   - ${USERDATA}/filters/link.lua
   - ${USERDATA}/filters/div.lua
   - ${USERDATA}/filters/preamble.lua
+  - ${USERDATA}/filters/highlight.lua
   - mermaid-filter                          #! uncomment if you have mermaid-filter installed
   - pandoc-crossref                         #! uncomment if you have pandoc-crossref installed
   - citeproc
@@ -32,7 +33,7 @@ filters:
 metadata:
   CJKmainfont: SimSong
   CJKoptions: AutoFakeBold
-  numbersections: true
+  # numbersections: true
   # preamble-file: ../preamble.sty            #! custom preamble file, relative to the custom data directory
 
 variables:
