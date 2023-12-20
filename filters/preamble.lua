@@ -19,6 +19,7 @@ basic_preamble = [[
 \newtheorem{definition}{Definition}[section]
 \newtheorem{assumption}{Assumption}[section]
 \usepackage[normalem]{ulem} % use normalem to protect \emph
+\usepackage{soul}
 \renewcommand\hl{\bgroup\markoverwith
   {\textcolor{yellow}{\rule[-.5ex]{2pt}{2.5ex}}}\ULon}
 ]]
