@@ -15,6 +15,8 @@ basic_preamble = [[
 \usepackage{tikz}
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[section]
+\newtheorem{fact}{Fact}[section]
+\newtheorem{proposition}{Proposition}[section]
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
 \newtheorem{assumption}{Assumption}[section]
@@ -26,12 +28,12 @@ basic_preamble = [[
 
 
 function Meta (m)
-    header = m['header-includes'] and m['header-includes'] or pandoc.List()
-    header[#header + 1] = pandoc.RawBlock("tex", basic_preamble)
+    local header = m['header-includes'] and m['header-includes'] or pandoc.List()
+	table.insert(header, 1, pandoc.RawBlock("tex", basic_preamble))
 
     if m['preamble-file'] then
         preamble = pandoc.RawInline("tex", "\\usepackage{\"" .. user_dir .. m['preamble-file']:gsub("%.sty$", "") .. "\"}")
-        header[#header + 1] = preamble
+		table.insert(header, 1, preamble)
     end
 
     m["header-includes"] = header

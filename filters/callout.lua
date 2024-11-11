@@ -47,7 +47,9 @@ function BlockQuote(elem)
     return para
   end
 
-  callout_type = elem.content[1].content[1].text:match("^%[%!([a-z0-9%-]*)%]")
+  -- callout_type = elem.content[1].content[1].text:match("^%[%!([a-z0-9%-]*)%]")
+  callout_type = pandoc.utils.stringify(elem.content[1].content[1])
+  callout_type = callout_type:match("^%[%!([a-z0-9%-]*)%]")
 
   -- Plain blockquote
   if not callout_type then
@@ -76,7 +78,7 @@ function BlockQuote(elem)
     -- Get callout title
     callout_title = pandoc.utils.stringify(get_raw_tex(elem.content[1]))
     callout_title = callout_title:gsub("^%[%!([a-z0-9%-]*)%][%+%-]? ?", "")
-    title, id = callout_title:match("(.*) ^([0-9a-zA-Z-]*)")
+    title, id = callout_title:match("(.*) *^([0-9a-zA-Z-]*)")
     if title then
       callout_title = title
     end
@@ -97,6 +99,15 @@ function BlockQuote(elem)
     elseif has_value({ "Theorem", "Thm" }, callout_type) then
       latex_begin_string = "\\begin{theorem}[" .. callout_title .. "]"
       latex_end_string = "\\end{theorem}"
+    elseif has_value({ "Fact" }, callout_type) then
+      latex_begin_string = "\\begin{fact}[" .. callout_title .. "]"
+      latex_end_string = "\\end{fact}"
+    elseif has_value({ "Prop", "Proposition" }, callout_type) then
+      latex_begin_string = "\\begin{proposition}[" .. callout_title .. "]"
+      latex_end_string = "\\end{proposition}"
+    elseif has_value({ "Pf", "Proof" }, callout_type) then
+      latex_begin_string = "\\begin{proof}"
+      latex_end_string = "\\end{proof}"
     else
       if title_only then
         latex_begin_string_template =

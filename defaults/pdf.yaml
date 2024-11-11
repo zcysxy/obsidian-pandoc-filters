@@ -2,9 +2,10 @@
 ## General options
 standalone: true
 embed-resources: true
-from: markdown+tex_math_single_backslash+wikilinks_title_after_pipe+mark+autolink_bare_uris
+from: markdown+tex_math_single_backslash+wikilinks_title_after_pipe+mark+autolink_bare_uris+pipe_tables
 output-file: output.pdf
-pdf-engine: xelatex                           #! use xelatex to support CJK and unicode
+pdf-engine: pdflatex                           #! use xelatex to support CJK and unicode
+# pdf-engine: xelatex                           #! use xelatex to support CJK and unicode
 highlight-style: tango
 data-dir: ${.}/..                             #! custom data directory, the directory containing the filters, defaults, and tempaltes folders
 # toc: true
@@ -34,7 +35,12 @@ metadata:
   CJKmainfont: SimSong
   CJKoptions: AutoFakeBold
   # numbersections: true
-  # preamble-file: ../preamble.sty            #! custom preamble file, relative to the custom data directory
+  link-citations: true
+  preamble-file: ../preamble.sty            #! custom preamble file, relative to the custom data directory
+  # For pandoc-crossref
+  crossrefYaml: .config/pandoc/defaults/crossref.yaml
+  # For citeproc
+  reference-section-title: References
 
 variables:
   # For beamer
@@ -44,10 +50,6 @@ variables:
   graphics: true
   geometry:
     - margin=1in
-  # For pandoc-crossref
-  figPrefix:
-    - Figure
-    - Figures
   natbiboptions: numbers,square
   biblatexoptions: style=numeric
   biblio-title: References

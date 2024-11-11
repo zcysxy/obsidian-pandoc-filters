@@ -12,7 +12,7 @@ function Link(link)
 
   if link.title == "wikilink" then
     -- Handling content (display)
-    if link.target == link.content[1].text then
+    if link.target == pandoc.utils.stringify(link.content) then
       content_type = "noalias"
       if link.target:match("^#") then
         content = nil
@@ -59,7 +59,7 @@ function Link(link)
     link.target = link.target:gsub(' ', '-')
     link.target = link.target:gsub('%%20', '-')
     link.target = link.target:gsub('[^a-zA-Z0-9#%-]', '')
-    target = link.target:gsub('^#', '')
+    target = link.target:gsub('^#*', '')
   end
 
   -- Compose reference
