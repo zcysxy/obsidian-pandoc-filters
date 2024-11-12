@@ -6,36 +6,27 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v3
+    - run: | # Remove lines containing "logging" from files in directory filters/ if there are any
+        find filters/ -type f -exec sed -i '/logging/d' {} \;
     - name: Archive Release
-      uses: thedoctor0/zip-release@0.7.5
+      uses: thedoctor0/zip-release@0.7.1
       with:
         type: 'zip'
         filename: 'release.zip'
-        path: "defaults filters templates"
-  release:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@master
+        directory: '.'
+        path: "defaults/ filters/ templates/"
     - name: Create Release
-      uses: actions/create-release@v1
+      uses: ncipollo/release-action@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
         body: |
           Release ${{ github.ref }}
         draft: false
         prerelease: false
-    - name: Upload Release
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: release.zip
-        asset_name: release.zip
-        asset_content_type: application/zip
+        artifacts: "release.zip"
+        token: ${{ secrets.GITHUB_TOKEN }}
