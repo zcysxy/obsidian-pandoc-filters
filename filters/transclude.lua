@@ -43,9 +43,10 @@ function Pandoc(doc)
 						if #pre_para.c > 0 then
 							table.insert(blocks, pre_para)
 						end
-						for _, b in pairs(embedded) do
-							table.insert(blocks, b)
-						end
+						-- for _, b in pairs(embedded) do
+						-- 	table.insert(blocks, b)
+						-- end
+						table.insert(blocks, pandoc.Div(embedded, {class = 'embed', id=img.src}))
 						pre_emb_stop = j + 1
 					end
 				end
@@ -62,5 +63,4 @@ function Pandoc(doc)
 	end
 	return pandoc.Pandoc(blocks, doc.meta)
 end
-
 

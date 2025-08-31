@@ -18,6 +18,7 @@ bibliography: /Users/ce/3-KNWL/33-Ref/myLibrary.bib     #! custom bib file
 # csl: ${USERDATA}/PLACEHOLDER.csl            #! custom csl
 
 filters:
+  - ${USERDATA}/filters/transclude.lua
   - ${USERDATA}/filters/image.lua
   - ${USERDATA}/filters/codeblock.lua
   - ${USERDATA}/filters/math.lua
@@ -36,7 +37,7 @@ metadata:
   CJKoptions: AutoFakeBold
   numbersections: true
   link-citations: true
-  preamble-file: ../preamble.sty            #! custom preamble file, relative to the custom data directory
+  # preamble-file: ../preamble.sty            #! custom preamble file, relative to the custom data directory
   # For pandoc-crossref
   crossrefYaml: .config/pandoc/defaults/crossref.yaml
   # For citeproc
