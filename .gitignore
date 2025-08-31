@@ -5,3 +5,4 @@ PLACEHOLDER*
 templates/my.latex
 .lazygit.yml
 *.diff
+todo.md

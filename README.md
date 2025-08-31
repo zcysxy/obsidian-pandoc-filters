@@ -3,7 +3,7 @@ title: Obsidian Pandoc
 author: zcysxy
 type: tool
 created: 2023-07-20T15:47:11
-modified: 2023-10-31T05:14:24
+modified: 2025-08-31T03:17:58
 output:
   pdf_document:
     defaults: pdf
@@ -123,12 +123,10 @@ Therefore, the actual obsidian-shellcommands command I am using looks like this:
 ## In the future, perhaps we can
 
 - Add more filters for
+  - alternate checkboxes
   - beamer
-  - [x] embeds
   - literature note links as citations
   - Obsidian comments
-- Integrate with [obsidian-pandoc-templates](https://github.com/universvm/obsidian-pandoc-templates) and [obsidian-enhancing-export](https://github.com/mokeyish/obsidian-enhancing-export)
-- [x] Directly read the `preamble.sty` file used by [obsidian-latex](https://github.com/wei2912/obsidian-latex)
 
 ## Customization guide
 
