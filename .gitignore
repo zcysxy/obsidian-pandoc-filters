@@ -1,8 +1,6 @@
-debug*
 *.err
 *.pdf
 logging.lua
-*.md
 PLACEHOLDER*
 templates/my.latex
 .lazygit.yml
