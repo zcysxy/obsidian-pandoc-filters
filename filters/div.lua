@@ -25,8 +25,8 @@ function Div(el)
   if el.classes[1] == 'hidden' then
     return {}
 	elseif el.classes:includes('embed') and not el.classes:includes('naked') then
-		local latex_begin_string = "\\begin{tcolorbox}[boxrule=0.5pt,colback=lightgray!10!white,colframe=lightgray!75!black,coltitle=black,fonttitle=\\small\\ttfamily,detach title,after upper={\\par\\hfill\\tcbtitle},title=" .. el.identifier .. "]\n"
-		local latex_end_string = "\\end{tcolorbox}\n"
+		local latex_begin_string = "\\begin{tcolorbox}[boxrule=0.5pt,colback=lightgray!10!white,colframe=lightgray!75!black,coltitle=black,fonttitle=\\small\\ttfamily,detach title,after upper={\\par\\hfill\\tcbtitle},title=" .. el.identifier:gsub('([_#^])','\\%1{}') .. "]\n"
+		local latex_end_string = "\n\\end{tcolorbox}\n"
     return { pandoc.RawBlock("latex", latex_begin_string) } ..
         el.content ..
         { pandoc.RawBlock("latex", latex_end_string) }
