@@ -15,7 +15,7 @@ output:
 - [+] up
 - [-] down
 - [/] incomplete
-- [>] forwarded
+- [>] forwarded $\displaystyle \sum_i^n$
 - [=] cancelled
 - [ ] to-do
 - [x] done
