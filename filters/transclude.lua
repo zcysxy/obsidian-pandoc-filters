@@ -1,3 +1,5 @@
+local logging = require("logging")
+
 local function read_file(filepath)
 	local file = io.open(filepath, "r")
 	if not file then
@@ -8,8 +10,41 @@ local function read_file(filepath)
 	return content
 end
 
+-- Extracts the markdown content of a section by heading title (case-insensitive, trimmed)
+local function extract_section(doc, heading)
+	local idx_start, idx_end, heading_level
+	for idx, block in pairs(doc.blocks) do
+		if block.t == 'Header' and pandoc.utils.stringify(block.c) == heading then
+			idx_start = idx
+			heading_level = block.level
+		elseif idx_start and block.t == 'Header' and block.level <= heading_level then
+			idx_end = idx-1
+			break
+		end
+	end
+
+	-- trim blocks
+	if not idx_start then
+		idx_start = 1
+	end
+	if not idx_end then
+		idx_end = #doc.blocks
+	end
+	return pandoc.Blocks{table.unpack(doc.blocks, idx_start, idx_end)}
+end
+
+
 local function embed(img)
-	local note_path = img.src
+	local src = img.src
+	local note_path, section
+	-- parse section syntax: note#section
+	local hash_idx = src:find('#')
+	if hash_idx then
+		note_path = src:sub(1, hash_idx-1)
+		section = src:sub(hash_idx+1)
+	else
+		note_path = src
+	end
 	-- Add extension .md if not present
 	if not note_path:match('%.md$') then
 		note_path = note_path .. '.md'
@@ -20,7 +55,17 @@ local function embed(img)
 		return img
 	end
 	local doc = pandoc.read(note_content, 'markdown')
-	return doc.blocks
+
+	if not section then
+		return doc.blocks
+	else
+		local embed_content = extract_section(doc, section)
+		if not embed_content then
+			return img
+		else
+			return embed_content
+		end
+	end
 end
 
 function Pandoc(doc)

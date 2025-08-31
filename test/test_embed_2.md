@@ -10,7 +10,7 @@ $$
 F(x) = \int_{-\infty}^x e^{-t^2} dt
 $$
 
-## H2-2
+## H2-2 Gaussian
 
 
 | A | B |
