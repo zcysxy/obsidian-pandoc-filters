@@ -18,6 +18,7 @@ bibliography: /Users/ce/3-KNWL/33-Ref/myLibrary.bib     #! custom bib file
 # csl: ${USERDATA}/PLACEHOLDER.csl            #! custom csl
 
 filters:
+  - ${USERDATA}/filters/transclude.lua
   - ${USERDATA}/filters/image.lua
   - ${USERDATA}/filters/codeblock.lua
   - ${USERDATA}/filters/math.lua

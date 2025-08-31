@@ -37,6 +37,7 @@ Imagine your professor gives you a LaTeX template and asks you to scribe a lectu
   - `image.lua` parses image captions and attributes, supporting Obsidian image alias
   - `shift_headings.lua` shifts heading levels to avoid duplicate H1 titles, supporting customizable shift levels
   - `div.lua` transforms custom pandoc divs
+  - `transclude.lua` embeds transcluded Markdown files using `\![[filename]]` syntax
   - `preamble.lua` loads your reusable preamble file, e.g., `preamble.sty` for [obsidian-latex](https://github.com/wei2912/obsidian-latex)
 - A [defaults file](https://pandoc.org/MANUAL.html#defaults-files) that configures all the pandoc options and meta variables
   - ❗ Please substitute the placeholders in the defaults file with your own configurations
