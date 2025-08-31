@@ -8,7 +8,7 @@
 user_dir = PANDOC_STATE['user_data_dir']:gsub(" ", "\\space "):gsub("~", "\\string~") .. "/"
 basic_preamble = [[
 \usepackage[dvipsnames]{xcolor}
-\usepackage{tcolorbox,mathtools}
+\usepackage{tcolorbox,mathtools,fontawesome5}
 \tcbuselibrary{skins,breakable}
 \usepackage{algorithm}
 \usepackage[noEnd=false,indLines=false]{algpseudocodex}

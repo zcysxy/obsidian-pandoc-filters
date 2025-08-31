@@ -23,6 +23,7 @@ filters:
   - ${USERDATA}/filters/codeblock.lua
   - ${USERDATA}/filters/math.lua
   - ${USERDATA}/filters/callout.lua
+  - ${USERDATA}/filters/checkbox.lua
   - ${USERDATA}/filters/shift_headings.lua
   - ${USERDATA}/filters/link.lua
   - ${USERDATA}/filters/div.lua

@@ -32,6 +32,7 @@ Imagine your professor gives you a LaTeX template and asks you to scribe a lectu
 - A [workflow](#the-workflow) that helps you seamlessly convert your Obsidian notes to camera-ready PDFs
 - [Pandoc filters](https://pandoc.org/lua-filters.html) that transform Obsidian Markdown for pandoc conversion
   - `callout.lua` transforms Obsidian callouts into LaTeX environments and color boxes with labeling support
+  - `checkbox.lua` transforms alternate checkboxes into inline color boxes
   - `link.lua` transforms wikilinks into LaTeX references, supporting heading links and block links with alias
   - `transclude.lua` enables note, section, and block embedding (`![[note]]`, `![[note#section]]`, and `![[note#^block-id]]`), supporting seamless embeds with alias `strict`, e.g., `![[note#section|srict]]`.
   - `codeblock.lua` parses codeblocks for plugins, including [TikZ](https://github.com/artisticat1/obsidian-tikzjax) and [Pseudocode](https://github.com/ytliu74/obsidian-pseudocode#use-in-block-preamble)
@@ -123,7 +124,6 @@ Therefore, the actual obsidian-shellcommands command I am using looks like this:
 ## In the future, perhaps we can
 
 - Add more filters for
-  - alternate checkboxes
   - beamer
   - literature note links as citations
   - Obsidian comments
