@@ -1,5 +1,3 @@
-local logging = require("logging")
-
 local function read_file(filepath)
 	local file = io.open(filepath, "r")
 	if not file then
