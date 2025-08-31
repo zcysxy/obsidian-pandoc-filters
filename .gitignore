@@ -5,3 +5,5 @@ logging.lua
 *.md
 PLACEHOLDER*
 templates/my.latex
+.lazygit.yml
+*.diff
