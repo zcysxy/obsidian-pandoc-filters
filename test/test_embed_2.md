@@ -1,16 +1,18 @@
-# H1
+# Title
 
-## H2-1
+## Text!
 
-this is good!
+this is good! ^text
 
-### H3
+### Equation
 
 $$
 F(x) = \int_{-\infty}^x e^{-t^2} dt
 $$
 
-## H2-2 Gaussian
+^eq-test
+
+## A Table
 
 
 | A | B |
