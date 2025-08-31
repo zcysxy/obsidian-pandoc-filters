@@ -1,7 +1,3 @@
--- Function needs to have a name so that recurion can work.
--- That is why it is outside the returned table.
-local logging = require('logging')
-
 local function read_file(filepath)
 	local file = io.open(filepath, "r")
 	if not file then
@@ -43,10 +39,7 @@ function Pandoc(doc)
 						if #pre_para.c > 0 then
 							table.insert(blocks, pre_para)
 						end
-						-- for _, b in pairs(embedded) do
-						-- 	table.insert(blocks, b)
-						-- end
-						table.insert(blocks, pandoc.Div(embedded, {class = 'embed', id=img.src}))
+						table.insert(blocks, pandoc.Div(embedded, {class = 'embed ' .. pandoc.utils.stringify(img.caption), id=img.src}))
 						pre_emb_stop = j + 1
 					end
 				end
