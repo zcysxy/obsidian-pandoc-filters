@@ -10,7 +10,7 @@ function Link(link)
   local target_type = nil
   local link_type = nil
 
-  if link.title == "wikilink" then
+  if link.attr.classes[1] == "wikilink" then
     -- Handling content (display)
     if link.target == pandoc.utils.stringify(link.content) then
       content_type = "noalias"
@@ -54,7 +54,7 @@ function Link(link)
   end
 
   -- Heading links
-  if (target_type == "heading") or (link.title ~= "wikilink" and link.target:match("^<?#[^%^]")) then
+  if (target_type == "heading") or (link.attr.classes[1] ~= "wikilink" and link.target:match("^<?#[^%^]")) then
     link.target = link.target:lower()
     link.target = link.target:gsub(' ', '-')
     link.target = link.target:gsub('%%20', '-')
@@ -63,7 +63,7 @@ function Link(link)
   end
 
   -- Compose reference
-  if link.title == "wikilink" then
+  if link.attr.classes[1] == "wikilink" then
     if link_type == "internal" then
       if content_type == "noalias" then
         return pandoc.RawInline("latex", "\\ref{" .. target .. "}")

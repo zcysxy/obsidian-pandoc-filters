@@ -34,7 +34,7 @@ filters:
 metadata:
   CJKmainfont: SimSong
   CJKoptions: AutoFakeBold
-  # numbersections: true
+  numbersections: true
   link-citations: true
   preamble-file: ../preamble.sty            #! custom preamble file, relative to the custom data directory
   # For pandoc-crossref

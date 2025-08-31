@@ -7,23 +7,40 @@
 
 user_dir = PANDOC_STATE['user_data_dir']:gsub(" ", "\\space "):gsub("~", "\\string~") .. "/"
 basic_preamble = [[
-\usepackage{xcolor}
-\usepackage{tcolorbox}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox,mathtools}
 \tcbuselibrary{skins,breakable}
 \usepackage{algorithm}
 \usepackage[noEnd=false,indLines=false]{algpseudocodex}
+\newcommand{\Input}{\item[\textbf{Input:}]}
 \usepackage{tikz}
+% \renewcommand{\hl}{\bgroup\markoverwith
+%  {\textcolor{yellow}{\rule[-.5ex]{2pt}{2.5ex}}}\ULon}
 \usepackage{amsthm}
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{fact}{Fact}[section]
-\newtheorem{proposition}{Proposition}[section]
+\makeatletter
+\@ifundefined{theorem}{\newtheorem{theorem}{Theorem}[section]}{}
+\@ifundefined{fact}{\newtheorem{fact}{Fact}[section]}{}
+\@ifundefined{proposition}{\newtheorem{proposition}{Proposition}[section]}{}
+\makeatother
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
-\newtheorem{assumption}{Assumption}[section]
+\makeatletter
+\@ifundefined{definition}{\newtheorem{definition}{Definition}[section]}{}
+\@ifundefined{assumption}{\newtheorem{assumption}{Assumption}[section]}{}
+\@ifundefined{question}{\newtheorem{question}{Question}[section]}{}
+\@ifundefined{example}{\newtheorem{example}{Example}[section]}{}
+\makeatother
+\theoremstyle{remark}
+\makeatletter
+\@ifundefined{remark}{\newtheorem{remark}{Remark}}{}
+\makeatother
 \usepackage[normalem]{ulem} % use normalem to protect \emph
 \usepackage{soul}
-\renewcommand\hl{\bgroup\markoverwith
-  {\textcolor{yellow}{\rule[-.5ex]{2pt}{2.5ex}}}\ULon}
+\makeatletter
+\def\cleartheorem#1{%
+	\expandafter\let\csname #1\endcsname\relax
+	\expandafter\let\csname c@#1\endcsname\relax
+}
+\makeatother
 ]]
 
 
