@@ -10,7 +10,11 @@ preamble: false
 
 ![[test/test_embed_2#^list-l1]]
 
-![[test/test_embed_2#^list-l2]]
+![[test/test_embed_2#^list-l2|naked]]
+
+hello ![[test/test_embed_2#^list-l2|inline]] lala
+
+![[test/test_embed_2#^table]]
 
 ![[test/test_embed_2#^callout]]
 

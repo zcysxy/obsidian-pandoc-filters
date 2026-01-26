@@ -27,6 +27,8 @@ $$
 |---|---|
 | 1 | 2 |
 
+^table
+
 ## A Callout
 
 > [!note] hello ^callout

@@ -8,8 +8,6 @@
   By github.com/zcysxy
 --]]
 
-local logging = require("logging")
-
 local function slugify(text)
 	text = text:lower():gsub("[^%w]+", "-"):gsub("^-+", ""):gsub("-+$", "")
 	return text
@@ -61,13 +59,13 @@ local function extract_block(blocks, block_id)
 			for _, item in ipairs(block.c) do
 				local recursive_content = extract_block(item, block_id)
 				if recursive_content then
-					if recursive_content.t == 'BulletList' then
+					if #recursive_content == 1 and recursive_content[1].t == 'BulletList' then
 						return recursive_content
 					else
 						-- Construct a list with one item
 						local embed = pandoc.BulletList({pandoc.List()})
 						embed.c[1] = item
-						return embed
+						return pandoc.Blocks{embed}
 					end
 				end
 			end
@@ -137,11 +135,15 @@ local function embed(img)
 		else
 			if inline_flag then
 				embed_type = 'Inlines'
-				if #embed_content == 1 and embed_content[1].t == 'Para' then
-					embed_content = embed_content[1]
-				else
-					embed_content = pandoc.utils.blocks_to_inlines(embed_content)
+				if #embed_content == 1 then
+					local embed_content_type = embed_content[1].t
+					if embed_content_type == 'Para' then
+						return embed_content[1], embed_type
+					elseif embed_content_type == 'BulletList' then
+						return pandoc.Para(embed_content[1].c[1][1].c), embed_type
+					end
 				end
+				embed_content = pandoc.Para(pandoc.utils.blocks_to_inlines(embed_content))
 			end
 			return embed_content, embed_type
 		end
