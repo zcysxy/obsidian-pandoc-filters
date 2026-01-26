@@ -120,20 +120,20 @@ function BlockQuote(elem)
 			latex_begin_string_template =
 			"\\begin{tcolorbox}[noparskip,breakable,coltitle=black,colback=%s!5!white,colframe=%s,title=%s,fonttitle=\\bfseries]"
 		end
-		latex_end_string = "\\end{tcolorbox}"
 		if callout_title:match('[^%s]') then
 			latex_begin_string = string.format(latex_begin_string_template, block_color, block_color, callout_title)
 		else -- use type as title
 			latex_begin_string = string.format(latex_begin_string_template, block_color, block_color, callout_type)
 		end
+		latex_end_string = "\\end{tcolorbox}"
+	end
 
-    -- Use Obsidian ID as label
-    if id then
-      latex_begin_string = latex_begin_string .. "\\label{" .. id .. "}"
-    end
+	-- Use Obsidian ID as label
+	if id then
+		latex_begin_string = latex_begin_string .. "\\label{" .. id .. "}"
+	end
 
-    return { pandoc.RawBlock("latex", latex_begin_string) } ..
-        elem.content ..
-        { pandoc.RawBlock("latex", latex_end_string) }
-  end
+	return { pandoc.RawBlock("latex", latex_begin_string) } ..
+			elem.content ..
+			{ pandoc.RawBlock("latex", latex_end_string) }
 end
