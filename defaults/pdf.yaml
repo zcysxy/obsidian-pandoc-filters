@@ -26,6 +26,7 @@ filters:
   - ${USERDATA}/filters/shift_headings.lua
   - ${USERDATA}/filters/link.lua
   - ${USERDATA}/filters/div.lua
+  - ${USERDATA}/filters/columns.lua
   - ${USERDATA}/filters/preamble.lua
   - ${USERDATA}/filters/highlight.lua
   # - mermaid-filter #! uncomment if you have mermaid-filter installed

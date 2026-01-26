@@ -8,6 +8,32 @@ preamble: false
 
 # Divs
 
+## Columns
+
+:::: columns
+
+::: column
+
+hello
+
+:::
+
+::: column
+
+world
+
+:::
+
+::: column
+
+lala
+
+:::
+::::
+
+
+## LaTeX Environments
+
 ::: {env=definition title=Greeting}
 
 hello
@@ -19,6 +45,8 @@ hello
 hello
 
 :::
+
+## Obsidian Comments
 
 hello %% hide `this` %% world %% hide **that** %% lala %% hide *other*
 
