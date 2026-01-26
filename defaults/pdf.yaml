@@ -4,18 +4,17 @@ standalone: true
 embed-resources: true
 from: markdown+tex_math_single_backslash+wikilinks_title_after_pipe+mark+autolink_bare_uris+pipe_tables
 output-file: output.pdf
-pdf-engine: pdflatex                           #! use xelatex to support CJK and unicode
-# pdf-engine: xelatex                           #! use xelatex to support CJK and unicode
+pdf-engine: pdflatex #! use xelatex to support CJK and unicode
 highlight-style: tango
-data-dir: ${.}/..                             #! custom data directory, the directory containing the filters, defaults, and tempaltes folders
+data-dir: ${.}/.. #! custom data directory, the directory containing the filters, defaults, and tempaltes folders
 # toc: true
 
 ## Templates
-# template: ${USERDATA}/PLACEHOLDER.latex     #! custom template
+# template: ${USERDATA}/custom.latex     #! custom template
 
 ## Biliography
-bibliography: /Users/ce/3-KNWL/33-Ref/myLibrary.bib     #! custom bib file
-# csl: ${USERDATA}/PLACEHOLDER.csl            #! custom csl
+# bibliography: #{USERDATA}/custom.bib #! custom bib file
+# csl: ${USERDATA}/custom.csl #! custom csl
 
 filters:
   - ${USERDATA}/filters/transclude.lua
@@ -29,8 +28,8 @@ filters:
   - ${USERDATA}/filters/div.lua
   - ${USERDATA}/filters/preamble.lua
   - ${USERDATA}/filters/highlight.lua
-  - mermaid-filter                          #! uncomment if you have mermaid-filter installed
-  - pandoc-crossref                         #! uncomment if you have pandoc-crossref installed
+  # - mermaid-filter #! uncomment if you have mermaid-filter installed
+  # - pandoc-crossref #! uncomment if you have pandoc-crossref installed
   - citeproc
 
 metadata:
@@ -38,20 +37,17 @@ metadata:
   CJKoptions: AutoFakeBold
   numbersections: true
   link-citations: true
-  # preamble-file: ../preamble.sty            #! custom preamble file, relative to the custom data directory
+  preamble-file: ${USERDATA}/../preamble.sty #! custom preamble file (e.g., for plugin obsidian-latex)
   # For pandoc-crossref
-  crossrefYaml: .config/pandoc/defaults/crossref.yaml
+  # crossrefYaml: .config/pandoc/defaults/crossref.yaml #! path to crossref config yaml file, relative to current working directory of the Markdown file
   # For citeproc
   reference-section-title: References
 
 variables:
-  # For beamer
-  navigation: horizontal
-  fonttheme: "professionalfonts"
-  theme: "Antibes"
   graphics: true
   geometry:
     - margin=1in
   natbiboptions: numbers,square
   biblatexoptions: style=numeric
   biblio-title: References
+...

@@ -1,22 +1,59 @@
 ---
-# OPTIONS
-from: markdown+tex_math_single_backslash
+## General options
+standalone: true
+embed-resources: true
+from: markdown+tex_math_single_backslash+wikilinks_title_after_pipe+mark+autolink_bare_uris+pipe_tables
 to: beamer
-output-file: pandoc_beamer.pdf
-data-dir: ${.}/..                             #! custom data directory, the directory containing the filters, defaults, and tempaltes folders
+output-file: output.pdf
 pdf-engine: xelatex
+data-dir: ${.}/.. #! custom data directory, the directory containing the filters, defaults, and tempaltes folders
 citeproc: true
-metadata:
-  bibliography: /Users/ce/3-KNWL/33-Ref/myLibrary.bib 
-cite-method: biblatex # or natbib
 toc: true
 slide-level: 2
+
+## Templates
+# template: ${USERDATA}/beamer.tex #! custom template
+
+## Biliography
+cite-method: biblatex #! or natbib
+# bibliography: #{USERDATA}/custom.bib #! custom bib file
+# csl: ${USERDATA}/custom.csl #! custom csl
+
 filters:
   - ${USERDATA}/filters/beamer.lua
+  - ${USERDATA}/filters/image.lua
+  - ${USERDATA}/filters/math.lua
   - ${USERDATA}/filters/callout.lua
-# VARIABLES
+  - ${USERDATA}/filters/checkbox.lua
+  - ${USERDATA}/filters/shift_headings.lua
+  - ${USERDATA}/filters/link.lua
+  - ${USERDATA}/filters/div.lua
+  - ${USERDATA}/filters/preamble.lua
+  - ${USERDATA}/filters/highlight.lua
+  # - mermaid-filter #! uncomment if you have mermaid-filter installed
+  # - pandoc-crossref #! uncomment if you have pandoc-crossref installed
+  - citeproc
+
+metadata:
+  reference-section-title: References
+
 variables:
+  natbiboptions: numbers,square
+  biblatexoptions: style=numeric
+  biblio-title: References
+
   navigation: horizontal
-  fonttheme: "professionalfonts" 
-  theme: "Antibes"
+  paginate: true
+  headingDivider: 6
+  section-titles: false
+  beameroption:
+    - show notes on second screen=right
+    # - show only notes
+    # - hide notes
+
+  fonttheme: "professionalfonts"
+  # themefolder: ".config/pandoc/templates" #! custom theme folder, relative to current working directory of the Markdown file, use only with beamer.tex template
+  theme: "Auriga" # "Antibes" # "Madrid" # "Berlin" # or custom theme in themefolder
+  # colorthemefolder: ".config/pandoc/templates" #! custom theme folder, relative to current working directory of the Markdown file, use only with beamer.tex template
+  colortheme: "dolphin" # or custom colortheme in colorthemefolder
 ...
