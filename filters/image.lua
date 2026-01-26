@@ -11,8 +11,6 @@
   By github.com/zcysxy
 --]]
 
-local logging = require("logging")
-
 local function get_raw_tex(para)
 	para = para:walk {
 		Math = function(el) return "$" .. el.text .. "$" end,
@@ -60,7 +58,6 @@ function Image(el) -- inline
 		local wrapfig_begin = pandoc.RawInline('latex', string.format('\\begin{wrapfigure}{%s}[%s]{%s}', wf_pos, wf_overhang, wf_width))
 		local wrapfig_end = pandoc.RawInline('latex', '\\end{wrapfigure}')
 		el = pandoc.Inlines({wrapfig_begin, el, wrapfig_end})
-		logging.temp(el)
 	end
 
 	return el
