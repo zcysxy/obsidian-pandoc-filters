@@ -49,7 +49,7 @@ function Meta(m)
 	local header = m['header-includes'] and m['header-includes'] or pandoc.List()
 	table.insert(header, 1, pandoc.RawBlock("tex", basic_preamble))
 
-	if m['preamble-file'] then
+    if m['preamble-file'] and (m['preamble'] ~= false) then
 		local preamble = pandoc.RawInline("tex",
 			"\\usepackage{\"" .. user_dir .. m['preamble-file']:gsub("^%${USERDATA}/", ""):gsub("%.sty$", "") .. "\"}")
 		table.insert(header, 1, preamble)
