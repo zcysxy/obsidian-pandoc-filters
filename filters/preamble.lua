@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 --[[
   Reusable LaTeX preambles
   Source the preamble file specified in the defaults file or the frontmatter
@@ -5,8 +6,8 @@
   By github.com/zcysxy
 --]]
 
-user_dir = PANDOC_STATE['user_data_dir']:gsub(" ", "\\space "):gsub("~", "\\string~") .. "/"
-basic_preamble = [[
+local user_dir = PANDOC_STATE['user_data_dir']:gsub(" ", "\\space "):gsub("~", "\\string~") .. "/"
+local basic_preamble = [[
 \usepackage[dvipsnames]{xcolor}
 \usepackage{tcolorbox,mathtools,fontawesome5}
 \tcbuselibrary{skins,breakable}
@@ -44,15 +45,16 @@ basic_preamble = [[
 ]]
 
 
-function Meta (m)
-    local header = m['header-includes'] and m['header-includes'] or pandoc.List()
+function Meta(m)
+	local header = m['header-includes'] and m['header-includes'] or pandoc.List()
 	table.insert(header, 1, pandoc.RawBlock("tex", basic_preamble))
 
-    if m['preamble-file'] then
-        preamble = pandoc.RawInline("tex", "\\usepackage{\"" .. user_dir .. m['preamble-file']:gsub("%.sty$", "") .. "\"}")
+	if m['preamble-file'] then
+		local preamble = pandoc.RawInline("tex",
+			"\\usepackage{\"" .. user_dir .. m['preamble-file']:gsub("^%${USERDATA}/", ""):gsub("%.sty$", "") .. "\"}")
 		table.insert(header, 1, preamble)
-    end
+	end
 
-    m["header-includes"] = header
-    return m
+	m["header-includes"] = header
+	return m
 end
