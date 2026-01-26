@@ -1,6 +1,8 @@
 ---@diagnostic disable: undefined-global
 --[[
-Convert alternate checkbox syntax to inline tcboxes.
+	Convert alternate checkbox syntax to inline tcboxes.
+
+	By github.com/zcysxy
 -- ]]
 
 local tcbegin = "[\\raisebox{-0.7ex}{\\small\\color{%s}%s}]\\begin{tcolorbox}[enhanced,nobeforeafter,tcbox raise base,box align=center,boxrule=0.4pt,top=0mm,bottom=0mm,right=0mm,left=0mm,arc=1pt,boxsep=2pt,before upper={\\vphantom{dlg}},colframe=%s!50!black,coltext=black,colback=%s!10!white]"

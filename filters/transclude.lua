@@ -8,18 +8,9 @@
   By github.com/zcysxy
 --]]
 
-local logging = require('logging')
-
 local function slugify(text)
 	text = text:lower():gsub("[^%w]+", "-"):gsub("^-+", ""):gsub("-+$", "")
 	return text
-end
-
-local function concat_tables(t1, t2)
-	for _, v in ipairs(t2) do
-		table.insert(t1, v)
-	end
-	return t1
 end
 
 local function read_file(filepath)
@@ -84,6 +75,7 @@ end
 local function embed(img)
 	local embed_type = 'Blocks'
 	local src = img.src -- pipe excluded
+	local inline_flag = pandoc.utils.stringify(img.caption):match('inline')
 	local note_path, section, block_id
 	local hash_idx = src:find('#')
 	if hash_idx then
@@ -115,16 +107,17 @@ local function embed(img)
 			return embed_content, embed_type
 		end
 	else -- block embed
-		--TODO: separate inline and standalone block embed
 		local embed_content = extract_block(doc, block_id)
 		if not embed_content then
 			return doc.blocks, embed_type -- or img
 		else
-			--WARNING!
-			-- return pandoc.utils.blocks_to_inlines(embed_content)
-			if #embed_content == 1 and embed_content[1].t == 'Para' then
+			if inline_flag then
 				embed_type = 'Inlines'
-				return embed_content[1], embed_type
+				if #embed_content == 1 and embed_content[1].t == 'Para' then
+					embed_content = embed_content[1]
+				else
+					embed_content = pandoc.utils.blocks_to_inlines(embed_content)
+				end
 			end
 			return embed_content, embed_type
 		end
@@ -177,8 +170,8 @@ function Pandoc(doc)
 			if pre_emb_stop == 1 then
 				table.insert(blocks, el)
 			else
+				table.insert(running_para, pandoc.Para({table.unpack(el.c, pre_emb_stop)}))
 				table.insert(blocks, pandoc.utils.blocks_to_inlines(running_para,{nil}))
-				table.insert(blocks, pandoc.Para({table.unpack(el.c, pre_emb_stop)}))
 			end
 
 		elseif el.t == 'Figure' then

@@ -1,8 +1,9 @@
 ---
-output:
-  pdf_document:
-    pandoc_args:
-      - --defaults=../../.config/pdf.yaml
+output: 
+  pdf_document: 
+    defaults: defaults/pdf
+    output: test.pdf
+preamble: false
 ---
 
 # Debug
