@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 --[[
 Convert alternate checkbox syntax to inline tcboxes.
 -- ]]

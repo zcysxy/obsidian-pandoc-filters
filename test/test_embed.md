@@ -1,3 +1,10 @@
+---
+output: 
+  pdf_document: 
+    defaults: defaults/pdf
+    output: test.pdf
+---
+
 # Test
 
 Hello ![[test/test_embed_2#^text|naked]] write some text here.
