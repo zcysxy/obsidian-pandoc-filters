@@ -15,6 +15,13 @@ local function slugify(text)
 	return text
 end
 
+local function concat_tables(t1, t2)
+	for _, v in ipairs(t2) do
+		table.insert(t1, v)
+	end
+	return t1
+end
+
 local function read_file(filepath)
 	if not filepath:match('%.md$') then
 		filepath = filepath .. '.md'
@@ -75,6 +82,7 @@ local function extract_block(doc, block_id)
 end
 
 local function embed(img)
+	local embed_type = 'Blocks'
 	local src = img.src -- pipe excluded
 	local note_path, section, block_id
 	local hash_idx = src:find('#')
@@ -92,79 +100,91 @@ local function embed(img)
 
 	local note_content = read_file(note_path)
 	if not note_content then -- let pandoc handle the image
-		return img
+		embed_type = 'Image'
+		return img, embed_type
 	end
 
 	local doc = pandoc.read(note_content, 'markdown')
 	if not section then -- note embed
-		return doc.blocks
+		return doc.blocks, embed_type
 	elseif not block_id then -- section embed
 		local embed_content = extract_section(doc, section)
 		if not embed_content then
-			return doc.blocks -- or img
+			return doc.blocks, embed_type -- or img
 		else
-			return embed_content
+			return embed_content, embed_type
 		end
 	else -- block embed
 		--TODO: separate inline and standalone block embed
 		local embed_content = extract_block(doc, block_id)
 		if not embed_content then
-			return doc.blocks -- or img
+			return doc.blocks, embed_type -- or img
 		else
 			--WARNING!
 			-- return pandoc.utils.blocks_to_inlines(embed_content)
 			if #embed_content == 1 and embed_content[1].t == 'Para' then
-				return embed_content[1]
+				embed_type = 'Inlines'
+				return embed_content[1], embed_type
 			end
-			return embed_content
+			return embed_content, embed_type
 		end
 	end
 end
 
 function Pandoc(doc)
 	local blocks = {}
-	for _,el in pairs(doc.blocks) do
-		if el.t == 'Figure' then
-			local el_img = el.content[1].content[1]
-			local embedded = embed(el_img)
-			table.insert(blocks, pandoc.Div(embedded, {class = 'embed ' .. pandoc.utils.stringify(el_img.caption), id=el_img.src}))
 
-		elseif el.t == 'Para' then
-			local pre_emb_stop = 1
-			local inline_emb_len = 0
-			local orig_len = #el.c
-			-- for j, img in pairs(el.c) do
-			for j = 1, orig_len do
-				local effective_j = j + inline_emb_len
-				local img = el.c[effective_j]
-				if img.t == 'Image' then
-					local embedded = embed(img)
-					if embedded.t == 'Para' then
-						-- Concatenate inlines into the paragraph
-						local temp_pre = pandoc.Para({table.unpack(el.c, 1, effective_j-1)})
-						local temp_post = pandoc.Para({table.unpack(el.c, effective_j+1)})
-						local temp = pandoc.utils.blocks_to_inlines({temp_pre, embedded, temp_post}, {nil})
-						inline_emb_len = inline_emb_len + #temp - #el.c
-						el = pandoc.Para(temp)
-					elseif pandoc.utils.type(embedded) == 'Blocks' then
-						local pre_para = pandoc.Para({table.unpack(el.c, pre_emb_stop, effective_j-1)})
-						-- insert pre_para and embedded blocks
-						if #pre_para.c > 0 then
-							table.insert(blocks, pre_para)
-						end
-						table.insert(blocks, pandoc.Div(embedded, {class = 'embed ' .. pandoc.utils.stringify(img.caption), id=img.src}))
-						pre_emb_stop = effective_j + 1
-					end
+	for _,el in pairs(doc.blocks) do
+		if el.t == 'Para' then
+			local pre_emb_stop = 1 -- keeps track of last block embed position
+			local running_para = {}
+
+			for j, img in pairs(el.c) do
+				if img.t ~= 'Image' then -- not a link
+					goto continue
 				end
+
+				local embedded, embed_type = embed(img)
+				if embed_type == 'Image' then -- not an embed
+					goto continue
+				end
+
+				-- Encounter an embed, update running_para and tracker
+				local inter_para = pandoc.Para({table.unpack(el.c, pre_emb_stop, j-1)})
+				table.insert(running_para, inter_para)
+				pre_emb_stop = j + 1
+
+				if embed_type == 'Blocks' then
+					-- Insert running_para to blocks and empty it
+					if #running_para > 0 then
+						table.insert(blocks, pandoc.utils.blocks_to_inlines(running_para,{nil}))
+						running_para = {}
+					end
+					-- Insert embedded blocks
+					table.insert(blocks, pandoc.Div(embedded, {class = 'embed ' .. pandoc.utils.stringify(img.caption), id=img.src}))
+					-- Update embed tracker
+				end
+
+				if embed_type == 'Inlines' then
+					-- Expand running_para with embedded inlines
+					table.insert(running_para, embedded)
+				end
+
+				::continue::
 			end
 
-			-- insert remaining part of the paragraph
+			-- Insert running_para and remaining para
 			if pre_emb_stop == 1 then
 				table.insert(blocks, el)
 			else
-				local post_para = {table.unpack(el.c, pre_emb_stop)}
-				table.insert(blocks, pandoc.Para(post_para))
+				table.insert(blocks, pandoc.utils.blocks_to_inlines(running_para,{nil}))
+				table.insert(blocks, pandoc.Para({table.unpack(el.c, pre_emb_stop)}))
 			end
+
+		elseif el.t == 'Figure' then
+			local el_img = el.content[1].content[1]
+			local embedded = embed(el_img)
+			table.insert(blocks, pandoc.Div(embedded, {class = 'embed ' .. pandoc.utils.stringify(el_img.caption), id=el_img.src}))
 
 		else
 			table.insert(blocks, el)
