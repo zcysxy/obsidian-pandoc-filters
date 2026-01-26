@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 --[[
   Transform Obsidian Plugins' code blocks
 
@@ -9,32 +10,24 @@
 --]]
 
 function CodeBlock(el)
-  local class = el.attr.classes[1]
-  --[[
-    For Pseudocode, you can put addtional LaTeX commands after "\begin{algorithm}%".
-    Specifically, you can use "\label{...}" to label the pseudocode block.
-  --]]
-  if class == "pseudo" then
-    return pandoc.RawBlock("latex", el.text
-      :gsub("%%\\label", "\\label")
-      :gsub("\\begin{algorithm}%%", "\\begin{algorithm}"))
+	local class = el.attr.classes[1]
 
-  --[[
-    For TikZ, you can put addtional LaTeX commands after "\begin{document}%" and "\end{document}%".
-    Specifically, "\caption{...}" and "\centering" are transformed regardless of their positions.
-    And you can add "\label{...}" at the same line as "\caption".
-    Note that "\usepackage{...}" are removed; re-add them in the frontmatter.
-  --]]
-  elseif class == "tikz" then
-    return pandoc.RawBlock("latex", el.text
-      :gsub("\\begin{document}%%", "")
-      :gsub("\\end{document}%%", "")
-      :gsub("\\usepackage[^\n]*", "")
-      :gsub("%%\\caption", "\\caption")
-      :gsub("%%\\centering", "\\centering")
-      :gsub("\\begin{document}", "\\begin{figure}[ht]")
-      :gsub("\\end{document}", "\\end{figure}"))
-  else
-    return el
-  end
+	-- WARNING: For all math-related code blocks, including pseudocode and TikZ,
+	-- this filter removes double percent signs (%%), so you can add plugin-incompatible
+	-- LaTeX commands after them, such as \label, \caption, and \centering.
+
+	local content = el.text
+	if class == "pseudo" or class == "tikz" then
+		content = content:gsub("%%%%", "")
+
+		if class == "tikz" then
+			content = content:gsub("\\begin{document}", "\\begin{figure}[ht]")
+					:gsub("\\end{document}", "\\end{figure}")
+					:gsub("\\usepackage[^\n]*", "") --Note: "\usepackage{...}" are removed; re-add them in the frontmatter.
+		end
+
+		el = pandoc.RawBlock("latex", content)
+	end
+
+	return el
 end
