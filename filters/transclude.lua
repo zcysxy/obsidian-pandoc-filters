@@ -52,10 +52,17 @@ local function extract_section(doc, heading)
 	return pandoc.Blocks{table.unpack(doc.blocks, idx_start, idx_end)}
 end
 
---TODO: blockquotes, lists
+--TODO: lists
 local function extract_block(doc, block_id)
 	for idx, block in pairs(doc.blocks) do
-		local content = block.c
+
+		local content
+		if block.t == "BlockQuote" then
+			content = block.c[1].c
+		else
+			content = block.c
+		end
+
 		if content then
 			local length = #content
 			-- The block ID should be at the end of the line
