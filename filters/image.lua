@@ -11,6 +11,8 @@
   By github.com/zcysxy
 --]]
 
+local logging = require("logging")
+
 local function get_raw_tex(para)
 	para = para:walk {
 		Math = function(el) return "$" .. el.text .. "$" end,
@@ -38,6 +40,27 @@ function Image(el) -- inline
 		el.caption = caption.blocks[1].content
 	else
 		el.caption = ""
+	end
+
+	-- Wrapfig
+	-- WARNING: make sure the image you want to wrap
+	-- text around is an line element
+	-- WARNING: check if `wrapfig` package is loaded before use
+	if el.attr.attributes.wrapfig then
+		local wf_width = el.attr.attributes.wrapfig
+		local wf_width_persent = wf_width:match('(%d+)%%$')
+		if wf_width_persent then
+			wf_width = string.format('%.2f\\textwidth', tonumber(wf_width_persent) / 100)
+		end
+		-- Position: r (right, default), l (left), i (inside), o (outside)
+		local wf_pos = el.attr.attributes.wrapfig_pos or 'r'
+		-- Overhang: additional space to the figure, default 0pt
+		local wf_overhang = el.attr.attributes.wrapfig_overhang or '0pt'
+
+		local wrapfig_begin = pandoc.RawInline('latex', string.format('\\begin{wrapfigure}{%s}[%s]{%s}', wf_pos, wf_overhang, wf_width))
+		local wrapfig_end = pandoc.RawInline('latex', '\\end{wrapfigure}')
+		el = pandoc.Inlines({wrapfig_begin, el, wrapfig_end})
+		logging.temp(el)
 	end
 
 	return el
