@@ -111,6 +111,11 @@ local function embed(img)
 		if not embed_content then
 			return doc.blocks -- or img
 		else
+			--WARNING!
+			-- return pandoc.utils.blocks_to_inlines(embed_content)
+			if #embed_content == 1 and embed_content[1].t == 'Para' then
+				return embed_content[1]
+			end
 			return embed_content
 		end
 	end
@@ -126,17 +131,29 @@ function Pandoc(doc)
 
 		elseif el.t == 'Para' then
 			local pre_emb_stop = 1
-			for j, img in pairs(el.c) do
+			local inline_emb_len = 0
+			local orig_len = #el.c
+			-- for j, img in pairs(el.c) do
+			for j = 1, orig_len do
+				local effective_j = j + inline_emb_len
+				local img = el.c[effective_j]
 				if img.t == 'Image' then
 					local embedded = embed(img)
-					if pandoc.utils.type(embedded) == 'Blocks' then
-						local pre_para = pandoc.Para({table.unpack(el.c, pre_emb_stop, j-1)})
+					if embedded.t == 'Para' then
+						-- Concatenate inlines into the paragraph
+						local temp_pre = pandoc.Para({table.unpack(el.c, 1, effective_j-1)})
+						local temp_post = pandoc.Para({table.unpack(el.c, effective_j+1)})
+						local temp = pandoc.utils.blocks_to_inlines({temp_pre, embedded, temp_post}, {nil})
+						inline_emb_len = inline_emb_len + #temp - #el.c
+						el = pandoc.Para(temp)
+					elseif pandoc.utils.type(embedded) == 'Blocks' then
+						local pre_para = pandoc.Para({table.unpack(el.c, pre_emb_stop, effective_j-1)})
 						-- insert pre_para and embedded blocks
 						if #pre_para.c > 0 then
 							table.insert(blocks, pre_para)
 						end
 						table.insert(blocks, pandoc.Div(embedded, {class = 'embed ' .. pandoc.utils.stringify(img.caption), id=img.src}))
-						pre_emb_stop = j + 1
+						pre_emb_stop = effective_j + 1
 					end
 				end
 			end
