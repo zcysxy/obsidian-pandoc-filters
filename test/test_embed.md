@@ -8,6 +8,12 @@ preamble: false
 
 # Test
 
+![[test/test_embed_2#^list-l1]]
+
+![[test/test_embed_2#^list-l2]]
+
+![[test/test_embed_2#^callout]]
+
 ![[test/test_embed_2#^text|naked]]
 
 ![[test/test_embed_2#^text]]

@@ -1,3 +1,11 @@
+---
+output: 
+  pdf_document: 
+    defaults: defaults/pdf
+    output: test.pdf
+preamble: false
+---
+
 # Title
 
 ## Text!
@@ -18,3 +26,19 @@ $$
 | A | B |
 |---|---|
 | 1 | 2 |
+
+## A Callout
+
+> [!note] hello ^callout
+>
+> This is a callout box.
+
+## A List
+
+- item 1
+    - sub-item 1
+- item 2 ^list-l1
+    - sub-item 2 ^list-l2
+        - sub-sub-item 1
+    - sub-item 3
+- item 3

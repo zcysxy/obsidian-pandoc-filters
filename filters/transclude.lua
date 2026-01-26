@@ -8,6 +8,8 @@
   By github.com/zcysxy
 --]]
 
+local logging = require("logging")
+
 local function slugify(text)
 	text = text:lower():gsub("[^%w]+", "-"):gsub("^-+", ""):gsub("-+$", "")
 	return text
@@ -52,9 +54,24 @@ local function extract_section(doc, heading)
 	return pandoc.Blocks{table.unpack(doc.blocks, idx_start, idx_end)}
 end
 
---TODO: lists
-local function extract_block(doc, block_id)
-	for idx, block in pairs(doc.blocks) do
+local function extract_block(blocks, block_id)
+	for idx, block in pairs(blocks) do
+
+		if block.t == "BulletList" then
+			for _, item in ipairs(block.c) do
+				local recursive_content = extract_block(item, block_id)
+				if recursive_content then
+					if recursive_content.t == 'BulletList' then
+						return recursive_content
+					else
+						-- Construct a list with one item
+						local embed = pandoc.BulletList({pandoc.List()})
+						embed.c[1] = item
+						return embed
+					end
+				end
+			end
+		end
 
 		local content
 		if block.t == "BlockQuote" then
@@ -71,7 +88,7 @@ local function extract_block(doc, block_id)
 					block.c[length] = nil
 					return pandoc.Blocks{block}
 				else -- return previous block
-					return pandoc.Blocks{doc.blocks[idx-1]}
+					return pandoc.Blocks{blocks[idx-1]}
 				end
 			end
 		end
@@ -114,7 +131,7 @@ local function embed(img)
 			return embed_content, embed_type
 		end
 	else -- block embed
-		local embed_content = extract_block(doc, block_id)
+		local embed_content = extract_block(doc.blocks, block_id)
 		if not embed_content then
 			return doc.blocks, embed_type -- or img
 		else
