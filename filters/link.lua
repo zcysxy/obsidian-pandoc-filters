@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 --[[
  Transform Obsidian wikilinks to Pandoc-recognizable links
  Support combinations of {internal, external} x {no alias, alias} x {file, heading, block} links
@@ -9,6 +10,7 @@ function Link(link)
   local content_type = nil
   local target_type = nil
   local link_type = nil
+	local content, target
 
   if link.attr.classes[1] == "wikilink" then
     -- Handling content (display)

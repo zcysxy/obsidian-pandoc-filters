@@ -1,4 +1,25 @@
+---@diagnostic disable: undefined-global
+--[[
+  Pandoc filter for Obsidian transclusion
+
+	Supports both inline and standalone transclusion.
+	Supports note, section, and block embeds.
+
+  By github.com/zcysxy
+--]]
+
+local logging = require('logging')
+
+local function slugify(text)
+	text = text:lower():gsub("[^%w]+", "-"):gsub("^-+", ""):gsub("-+$", "")
+	return text
+end
+
 local function read_file(filepath)
+	if not filepath:match('%.md$') then
+		filepath = filepath .. '.md'
+	end
+
 	local file = io.open(filepath, "r")
 	if not file then
 		return nil
@@ -8,16 +29,11 @@ local function read_file(filepath)
 	return content
 end
 
-local function slugify(text)
-	text = text:lower():gsub("[^%w]+", "-"):gsub("^-+", ""):gsub("-+$", "")
-	return text
-end
-
--- Extracts the markdown content of a section by heading title (case-insensitive, trimmed)
 local function extract_section(doc, heading)
 	local idx_start, idx_end, heading_level
 	for idx, block in pairs(doc.blocks) do
 		if block.t == 'Header' then
+			-- case-insensitive and trimmed
 			if slugify(pandoc.utils.stringify(block.c)) == slugify(heading) then
 				idx_start = idx
 				heading_level = block.level
@@ -28,22 +44,23 @@ local function extract_section(doc, heading)
 		end
 	end
 
-	-- trim blocks
 	if not idx_start then
-		idx_start = 1
+		idx_start = 1 -- transclude whole document if section not found
 	end
 	if not idx_end then
 		idx_end = #doc.blocks
 	end
+
 	return pandoc.Blocks{table.unpack(doc.blocks, idx_start, idx_end)}
 end
 
--- Extracts the markdown content of a block by its identifier (e.g., ^block-id)
+--TODO: blockquotes, lists
 local function extract_block(doc, block_id)
 	for idx, block in pairs(doc.blocks) do
 		local content = block.c
 		if content then
 			local length = #content
+			-- The block ID should be at the end of the line
 			if length >= 1 and content[length].t == "Str" and content[length].text == block_id then
 				if length > 1 then -- return this block
 					block.c[length] = nil
@@ -58,8 +75,8 @@ local function extract_block(doc, block_id)
 end
 
 local function embed(img)
-	local src = img.src
-	local note_path, section, block
+	local src = img.src -- pipe excluded
+	local note_path, section, block_id
 	local hash_idx = src:find('#')
 	if hash_idx then
 		note_path = src:sub(1, hash_idx-1)
@@ -69,9 +86,8 @@ local function embed(img)
 		note_path = src
 	end
 
-	-- Add extension .md if not present
-	if not note_path:match('%.md$') then
-		note_path = note_path .. '.md'
+	if note_path == '' then -- self-reference
+		note_path = PANDOC_STATE.input_files[1]
 	end
 
 	local note_content = read_file(note_path)
@@ -90,6 +106,7 @@ local function embed(img)
 			return embed_content
 		end
 	else -- block embed
+		--TODO: separate inline and standalone block embed
 		local embed_content = extract_block(doc, block_id)
 		if not embed_content then
 			return doc.blocks -- or img
@@ -102,9 +119,12 @@ end
 function Pandoc(doc)
 	local blocks = {}
 	for _,el in pairs(doc.blocks) do
-		if not el.t == 'Para' then
-			table.insert(blocks, el)
-		else
+		if el.t == 'Figure' then
+			local el_img = el.content[1].content[1]
+			local embedded = embed(el_img)
+			table.insert(blocks, pandoc.Div(embedded, {class = 'embed ' .. pandoc.utils.stringify(el_img.caption), id=el_img.src}))
+
+		elseif el.t == 'Para' then
 			local pre_emb_stop = 1
 			for j, img in pairs(el.c) do
 				if img.t == 'Image' then
@@ -128,6 +148,9 @@ function Pandoc(doc)
 				local post_para = {table.unpack(el.c, pre_emb_stop)}
 				table.insert(blocks, pandoc.Para(post_para))
 			end
+
+		else
+			table.insert(blocks, el)
 		end
 	end
 	return pandoc.Pandoc(blocks, doc.meta)

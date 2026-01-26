@@ -8,32 +8,32 @@
   By github.com/zcysxy
 --]]
 
-title = nil
+Title = nil
 
 -- Get variable
-function get_meta(m)
-  heading_shift = m.heading_shift
-  if heading_shift then
-    heading_shift = m.heading_shift[1].text
-    assert(tonumber(heading_shift), "heading_shift must be a number")
+function Get_meta(m)
+  Heading_shift = m.heading_shift
+  if Heading_shift then
+    Heading_shift = m.heading_shift[1].text
+    assert(tonumber(Heading_shift), "heading_shift must be a number")
   end
   -- assert heading_shift is a number
-  title = m.title
+  Title = m.title
 
   -- Remove Markdown H1 if title is set
-  if not heading_shift then
-    if title then
-      heading_shift = 1
+  if not Heading_shift then
+    if Title then
+      Heading_shift = 1
     else
-      heading_shift = 0
+      Heading_shift = 0
     end
   end
 
   return m
 end
 
-function shift_headings(h)
-  h.level = h.level - heading_shift
+function Shift_headings(h)
+  h.level = h.level - Heading_shift
   if h.level > 0 then
     return h
   else
@@ -41,4 +41,4 @@ function shift_headings(h)
   end
 end
 
-return { { Meta = get_meta }, { Header = shift_headings } }
+return { { Meta = Get_meta }, { Header = Shift_headings } }

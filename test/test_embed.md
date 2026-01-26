@@ -3,9 +3,14 @@ output:
   pdf_document: 
     defaults: defaults/pdf
     output: test.pdf
+preamble: false
 ---
 
 # Test
+
+![[test/test_embed_2#^text|naked]]
+
+![[test/test_embed_2#^text]]
 
 Hello ![[test/test_embed_2#^text|naked]] write some text here.
 
