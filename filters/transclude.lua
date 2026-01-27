@@ -118,7 +118,7 @@ local function embed(img)
 		return img, embed_type
 	end
 
-	local doc = pandoc.read(note_content, 'markdown')
+	local doc = pandoc.read(note_content, 'markdown+tex_math_single_backslash+wikilinks_title_after_pipe+mark+autolink_bare_uris+pipe_tables')
 	if not section then -- note embed
 		return doc.blocks, embed_type
 	elseif not block_id then -- section embed
