@@ -13,7 +13,7 @@ data-dir: ${.}/.. #! custom data directory, the directory containing the filters
 # template: ${USERDATA}/custom.latex     #! custom template
 
 ## Biliography
-bibliography: /Users/ce/3-KNWL/33-Ref/myLibrary.bib
+# bibliography: ${USERDATA}/custom.bib #! custom bib file
 # csl: ${USERDATA}/custom.csl #! custom csl
 
 filters:

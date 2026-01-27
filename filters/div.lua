@@ -21,7 +21,8 @@ function Inlines(el)
 	end
 
 	local comment_flag = false
-	for i, item in next, el do
+	for i = #el, 1, -1 do
+		local item = el[i]
 		if item.t == "Str" and item.text == "%%" then
 			comment_flag = not comment_flag
 			table.remove(el, i)
