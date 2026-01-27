@@ -21,7 +21,7 @@ function CodeBlock(el)
 		content = content:gsub("%%%%", "")
 
 		if class == "tikz" then
-			content = content:gsub("\\begin{document}", "\\begin{figure}[ht]")
+			content = content:gsub("\\begin{document}", "\\begin{figure}[H]")
 					:gsub("\\end{document}", "\\end{figure}")
 					:gsub("\\usepackage[^\n]*", "") --Note: "\usepackage{...}" are removed; re-add them in the frontmatter.
 		end

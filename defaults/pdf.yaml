@@ -13,7 +13,7 @@ data-dir: ${.}/.. #! custom data directory, the directory containing the filters
 # template: ${USERDATA}/custom.latex     #! custom template
 
 ## Biliography
-# bibliography: #{USERDATA}/custom.bib #! custom bib file
+bibliography: /Users/ce/3-KNWL/33-Ref/myLibrary.bib
 # csl: ${USERDATA}/custom.csl #! custom csl
 
 filters:
@@ -38,7 +38,7 @@ metadata:
   CJKoptions: AutoFakeBold
   numbersections: true
   link-citations: true
-  preamble-file: ${USERDATA}/../preamble.sty #! custom preamble file (e.g., for plugin obsidian-latex)
+  # preamble-file: ${USERDATA}/../preamble.sty #! custom preamble file (e.g., for plugin obsidian-latex)
   #!NOTE: set in the frontmatter `preamble=false` to disable preamble file for a specific file
   # For pandoc-crossref
   # crossrefYaml: .config/pandoc/defaults/crossref.yaml #! path to crossref config yaml file, relative to current working directory of the Markdown file

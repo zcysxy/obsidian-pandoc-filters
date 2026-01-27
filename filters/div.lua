@@ -13,8 +13,6 @@
   By github.com/zcysxy
 --]]
 
-local logging = require("logging")
-
 -- Obsidian comments (%%)
 -- Inline comments
 function Inlines(el)
@@ -38,7 +36,7 @@ end
 -- Block comments
 BLK_CMT_FLAG = false
 function Block(el)
-	if el.t == "Para" and el.content[1].text == "%%" then
+	if el.t == "Para" and next(el.content) and el.content[1].text == "%%" then
 		BLK_CMT_FLAG = not BLK_CMT_FLAG
 		return {}
 	elseif BLK_CMT_FLAG then
@@ -78,7 +76,7 @@ function Div(el)
 	-- Embeds
 	if el.classes:includes('embed') and not (el.classes:includes('naked') or el.classes:includes('strict')) then
 		local latex_begin_string =
-		"\\begin{tcolorbox}[boxrule=0.5pt,colback=lightgray!10!white,colframe=lightgray!75!black,coltitle=black,fonttitle=\\small\\ttfamily,detach title,after upper={\\par\\hfill\\tcbtitle},title=" ..
+		"\\begin{tcolorbox}[enhanced,breakable,skin first=enhanced,skin middle=enhanced,skin last=enhanced,boxrule=0.5pt,colback=lightgray!10!white,colframe=lightgray!75!black,coltitle=black,fonttitle=\\small\\ttfamily,detach title,after upper={\\par\\hfill\\tcbtitle},title=" ..
 		el.identifier:gsub('([_#^])', '\\%1{}') .. "]\n"
 		local latex_end_string = "\n\\end{tcolorbox}\n"
 		return { pandoc.RawBlock("latex", latex_begin_string) } ..
