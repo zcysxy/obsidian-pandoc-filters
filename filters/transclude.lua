@@ -95,6 +95,9 @@ local function extract_block(blocks, block_id)
 end
 
 local function embed(img)
+	if not img.attr.classes:includes("wikilink") then
+		return img, 'Image'
+	end
 	local embed_type = 'Blocks'
 	local src = img.src -- pipe excluded
 	local inline_flag = pandoc.utils.stringify(img.caption):match('inline')
@@ -202,9 +205,12 @@ function Pandoc(doc)
 
 		elseif el.t == 'Figure' then
 			local el_img = el.content[1].content[1]
-			local embedded = embed(el_img)
-			table.insert(blocks, pandoc.Div(embedded, {class = 'embed ' .. pandoc.utils.stringify(el_img.caption), id=el_img.src}))
-
+			local embedded, embed_type  = embed(el_img)
+			if embed_type == 'Image' then
+				table.insert(blocks, el)
+			else
+				table.insert(blocks, pandoc.Div(embedded, {class = 'embed ' .. pandoc.utils.stringify(el_img.caption), id=el_img.src}))
+			end
 		else
 			table.insert(blocks, el)
 		end

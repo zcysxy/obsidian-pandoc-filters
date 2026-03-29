@@ -63,6 +63,7 @@ function Image(el) -- inline
 	return el
 end
 
+
 function Figure(el) -- block
 	if #el.caption.long >= 1 then
 		local caption = pandoc.utils.stringify(get_raw_tex(el.caption.long[1].content)):gsub('|.*$', '')
@@ -72,6 +73,7 @@ function Figure(el) -- block
 		if attr_str then
 			local attr = pandoc.read('![]()' .. attr_str, 'markdown').blocks[1].content[1].attr
 			el.attr = attr
+			attr.identifier = ""
 			el.content[1].content[1].attr = attr
 			caption = temp_caption
 		end
